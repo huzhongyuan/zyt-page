@@ -1,0 +1,76 @@
+/* pages/home/home_child/photo/photo.wxss */
+page{
+  background: #f5f5f5;
+  /* height: 5000rpx; */
+}
+.pone{
+  background: #fff;
+  margin-top: 20rpx;
+  padding-bottom: 100rpx;
+}
+.pone_hand{
+  width:60rpx;
+height:60rpx;
+margin-top: 16rpx;
+margin-left: 24rpx;
+border-radius: 30rpx;
+float: left;
+}
+.pone_name{
+  margin-left: 98rpx;
+  font-size:24rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(51,51,51,1);
+padding-top: 18rpx;
+}
+.pone_time{
+  font-size:24rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(51,51,51,1);
+  margin-left: 98rpx;
+  /* margin-top: 14rpx; */
+  margin-bottom: 40rpx;
+}
+.pone_img{
+  width: 750rpx;
+}
+.good{
+  min-width:100rpx;
+height:50rpx;
+background:rgba(247,198,67,1);
+border-radius:25rpx;
+float: right;
+margin-right: 24rpx;
+margin-top: 30rpx;
+}
+.good_text{
+  font-size:26rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(51,51,51,1);
+line-height: 60rpx;
+margin-left: 23rpx;
+float: left;
+}
+.good_img{
+  width:28rpx;
+height:26rpx;
+/* margin-left: 10rpx; */
+margin-top: -20rpx;
+margin-left: 11rpx;
+}
+.ssdad{
+   width: 750rpx;
+   height: 14.6vw;
+   background:transparent;
+   margin-top: 1.6vw;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 29rpx;
+  justify-content:space-between;
+}
+.addimgs{
+  width:150rpx;
+height:150rpx;
+margin: 0 auto;
+}

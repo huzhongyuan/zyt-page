@@ -1,0 +1,26 @@
+<!--pages/my/my.wxml-->
+<!-- 个人信息 -->
+<view class='my_info'>
+  <image class='my_info_hand' src='{{userinfo.avatarUrl}}' mode='aspectFill'></image>
+  <view class='my_info_name'>{{userinfo.nickName}}</view>
+  <view class='my_info_change' bindtap='to_myinfo'>编辑个人资料</view>
+</view>
+<!-- 选项 -->
+
+<view class='some_farme'>
+  <view class='some' bindtap='to_child' id="2">
+    <image  mode='aspectFill'  class='some_img' src='../../images/myact.png'></image>
+    <view class='some_title'>我参与的活动</view>
+    <image  mode='aspectFill' class='some_to' src='../../images/forme_to.png'></image>
+  </view>
+  <view class='some'  bindtap='to_child'  id="1" >
+    <image   mode='aspectFit' class='some_img' src='../../images/myinact.png'></image>
+    <view class='some_title'>我发布的活动</view>
+    <image  mode='aspectFit' class='some_to' src='../../images/forme_to.png'></image>    
+  </view>
+    <view class='some'  bindtap='to_news'   >
+    <image   mode='aspectFit' class='some_img' src='../../images/forme3.png'></image>
+    <view class='some_title'>我的消息</view>
+    <image  mode='aspectFit' class='some_to' src='../../images/forme_to.png'></image>    
+  </view>
+</view>

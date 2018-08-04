@@ -1,0 +1,51 @@
+<!--pages/to_play/to_play.wxml-->
+<view class='photo'>
+  <image src='{{ detail.show_url }}'></image>
+</view>
+<view class='header'>
+  <view class='title'>{{ detail.name }}</view>
+  <view class='chargeMode'>{{ detail.charge  }}</view>
+</view>
+
+<view class='line'></view>
+
+<view class='place' bindtap='toMap'>
+  <image src='/images/location2.png'></image>
+  <text class='addr'>{{ detail.address }}</text>
+</view>
+
+<view class='line'></view>
+
+<view class='introdution'>
+  <text>{{ detail.description }}</text>
+</view>
+
+<view class='line'></view>
+
+<view class='can_play'>
+  <view class='play_header' wx:if='{{ item_list }}'>
+    <view class='transverse_line'></view>
+    <view class='play_text'>可以去玩</view>
+    <view class='transverse_line'></view>
+  </view>
+
+  <view class='play_lsit'>
+    <view class='play_item' wx:for="{{ item_list }}"  wx:key="unique" id="{{ item.id }}" data-index="{{ index }}"  bindtap='to_detail'>
+      <view class='play_item_box'>
+        <image class='play_item_image' src='{{ item.show_url }}'></image>
+        <view class='play_text_box'>
+          <view class='play_text_title'>{{ item.name }}</view>
+          <view class='play_text_price'> {{ item.charge }}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='black'></view>
+
+<view class='footer'>
+  <view class='share' bindtap='share'><button open-type='share'>分享</button></view>
+  <view class='want_go' bindtap='want_play'>我想去玩</view>
+  <view class='play_with' bindtap='play_with'>约伴去玩</view>
+</view>

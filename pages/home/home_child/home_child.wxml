@@ -1,0 +1,92 @@
+<!--pages/home/home_child/home_child.wxml-->
+<!-- 图片 -->
+<image class='titleimg' src='{{activity.coverImg}}' mode='aspectFit'></image>
+<!-- 题目 -->
+<view class='title'>
+  <view class='title_text'>{{activity.title}}</view>
+  <view class='title_pay'>{{activity.charge}}</view>
+</view>
+<!-- 时间和地址 -->
+<view class='timeandlocation'>
+  <view class='time'>
+    <image class='timeimg' src='../../../images/time2.png'></image>
+    <view class='timetext'>{{activity.beginTime}}-{{activity.endTime}}</view>
+  </view>
+  <view class='time'>
+    <image class='timeimg' src='../../../images/location2.png'></image>
+    <view class='timetext'>{{activity.place}}</view>
+  </view>
+</view>
+<!-- 详情 -->
+<view class='details'>
+  {{activity.details}}
+</view>
+<!-- 发布人 -->
+<view class='boss'>
+  <view class='boss_title'>发布人</view>
+  <view class='frame'></view>
+  <view class='boss_details'>
+    <image mode='aspectFill' class='boss_details_hand' src='{{activity.organizer.headImg}}'></image>
+    <view class='boss_details_name'>{{activity.organizer.nickname}}</view>
+    <view class='boss_details_phone'>{{activity.organizer.email}}</view>
+  </view>
+</view>
+<!--报名详情  -->
+<view class='person' bindtap='to_bosstitle'  >
+  <view class='person_title'>
+    <view class='person_title_text'>报名人数</view>
+    <image class='person_people1' mode='aspectFill' src='../../../images/people.png'></image>
+    <view class='person_people1_text'>{{activity.personNum}}</view>
+    <view class='person_people1_text2'>/{{activity.maleLimit}}</view>
+    <image class='person_people2' mode='aspectFit' src='../../../images/people1.png'></image>
+    <view class='person_people2_text'>{{activity.adultNum}}</view>
+    <image class='person_people2' mode='aspectFit' src='../../../images/people2.png'></image>
+    <view class='person_people2_text'>{{activity.childNum}}</view>
+  </view>
+</view>
+<!-- 报名人头像 -->
+<view class='person_hand' bindtap='to_bosstitle'   style='display:{{sign}}' >
+  <view class='handone' wx:for="{{activity.members}}" wx:key="">
+    <image class='hand' mode='aspectFill' src='{{item.headImg}}'></image>
+    <view class='handname'>{{item.nickname}}</view>
+  </view>
+  <!-- <image class='tiaoz' mode='aspectFill' src='../../../images/forme_to.png'></image> -->
+</view>
+<!-- 悬浮按钮 -->
+<!-- 未报名 -->
+ <view class=' ssdad '   style='display:{{sign}}'>
+  <view class='share ' bindtap='share'>分享</view>
+  <view class='sign ' bindtap='sign'>立即报名</view>
+</view> 
+<!-- 未签到 -->
+ <view class='ssdad ' bindtap='come' style='display:{{come}}'  >
+  <view class='come '>签到</view>
+</view> 
+<!-- 已签到 -->
+ <view class='ssdad ' bindtap='to_photo'  style='display:{{upuping}}' >
+    <view class='upupimg'>上传照片</view>
+</view> 
+<!-- 参与人 -->
+<view class='boss ' bindtap='to_signin' style='display:{{asdasdasd}}'>
+  <view class='boss_title '>参与人</view>
+  <view class='frame '></view>
+  <view class='participant ' wx:for="{{activity.members}}" wx:key="" >
+    <image mode='aspectFill ' class='participant_hand ' src='{{item.headImg}}'></image>
+    <view class='participant_name '>{{item.nickname}}</view>
+  </view>
+
+</view>
+
+
+<!-- 活动照片 -->
+<view class='photo ' bindtap='to_photo'>
+  <view class='photo_text '>活动照片
+    <view class='uptext '>上传</view>
+    <image class='upimg ' mode='aspectFill ' src='../../../images/up.png '></image>
+  </view>
+  <view class='frame '></view>
+  <view class='photo_one '  wx:for="{{imgarray}}" wx:key="">
+    <image class='photo_img ' mode='aspectFill ' src='{{item.show_url}}'></image>
+    <view class='photo_name '>{{item.userInfo.nickname}}</view>
+  </view>
+</view>

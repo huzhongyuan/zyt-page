@@ -1,0 +1,10 @@
+<!--pages/to_play/map/map.wxml-->
+    <map
+      id="myMap"
+      style="width: 100%; height: 300px;"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      markers="{{markers}}"
+      covers="{{covers}}"
+      show-location
+    ></map>

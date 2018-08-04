@@ -1,0 +1,67 @@
+<!--pages/to_play/list_scenic/list_scenic.wxml-->
+  <!-- 搜索功能 -->
+  <view class='content'>
+  <view class='xx'>
+      <view class = 'searchBlack1'></view>
+    <view class='search'>
+    <view class='search_input_box'>
+      <image src='/images/icon/search.png'></image>
+      <input placeholder='搜索' value='{{ text }}'  bindinput='input'></input>
+    </view>
+    <text class='search_btn' bindtap='search'>搜索</text>
+  </view>
+  <view class = 'searchBlack2'></view>
+  <view class='line'></view>
+
+
+<!-- 选项卡 -->
+  <view class='select_box'>
+    <view class='select' catchtap='selectTap'>
+        <text class='select_text' catchtap='change_theme' style='color:{{ color[0]}}'>{{ themeData[index[0]] }}</text>
+        <text class='select_text' catchtap='change_distance' style='color:{{ color[1] }}'>{{distanceData[index[1]]}}</text>     
+        <text class='select_text' catchtap='change_type' style='color:{{ color[2] }}'>{{typeData[index[2]]}}</text>     
+    </view>
+    <view class='option_box' style='height:{{show?(selectData.length>5?300:selectData.length*80):0}}rpx;'>
+        <text class='option'  wx:for='{{ selectData }}' wx:key='this' data-index='{{index}}' catchtap='optionTap'>{{item}}</text>
+    </view>
+</view>
+
+  </view>
+
+<view class='zhezhaoceng' style='display: {{ haszzc }}' catchtap='closezzc'></view>
+
+
+<!-- 活动展示 -->
+  <view class='activity' wx:for="{{ activity_list }}" wx:key="*this"  >
+    <view class='thinline'></view>
+    <view  bindtap='to_detail'  data-index=' {{ index }}' id="{{ item.id }}" class='activity_list'>
+      <image class='activity_photo' src='{{item.show_url}}'></image>
+      <view class='arr_detail'>
+        <view class='activity_title'> {{ item.address }}</view>
+        <view class='place_detail'> {{ item.description }}</view>
+        <view class='arr_box'>
+          <image class='activity_cion' src='/images/location.png'></image>
+          <text> {{ item.address }}</text>
+        </view>
+      </view>
+    </view>
+        <view class='thinline'></view>
+    <view class='activity_footer'>
+            <view class='gone'  bindtap='change_gone_photo' data-index=' {{ index }}'>
+              <image src="{{ item.markType == 1? ('/images/icon/collection.png'):('/images/icon/uncollection.png')}}" class='gone_img'></image>
+              <text>我去过</text>
+            </view>
+            <view class='wanted'  bindtap='change_wanted_photo' data-index=' {{ index }}'>
+              <image src="{{ item.markType == 2?('/images/icon/wanted.png'):('/images/icon/want.png')}}" class='wanted_img'></image>
+              <text >我想去</text>
+            </view>
+            <view class='play_with' bindtap='play_with'>
+              相伴去玩
+            </view>
+    </view>
+      <view class='fatline'></view>
+  </view>
+</view>
+<view class='bottomer' style='display:{{ bottomer }}'>
+  ~~到底了~~
+</view>

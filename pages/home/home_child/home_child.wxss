@@ -1,0 +1,341 @@
+/* pages/home/home_child/home_child.wxss */
+page{
+  background: #f5f5f5;
+  /* height: 5000rpx; */
+  padding-bottom: 120rpx;
+}
+.titleimg{
+  width: 750rpx;
+  height: 260rpx;
+}
+.title{
+  background: #fff;
+  width:750rpx;
+height:80rpx;
+background:rgba(255,255,255,1);
+}
+.title_text{
+line-height: 80rpx;
+  font-size:28rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(51,50,50,1);
+margin-left: 25rpx;
+max-width: 650rpx;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+float: left;
+}
+.title_pay{
+font-size:28rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(243,165,95,1);
+margin-right: 26rpx;
+float: right;
+line-height: 80rpx;
+}
+.timeandlocation{
+  width: 750rpx;
+  height: 160rpx;
+  margin-top: 8rpx;
+}
+.time{
+  width:750rpx;
+height:80rpx;
+background:rgba(255,255,255,1);
+}
+.timeimg{
+  width:26rpx;
+height:26rpx;
+margin: 27rpx;
+float: left;
+}
+.timetext{
+  font-size:26rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(51,50,50,1);
+line-height: 80rpx;
+}
+.details{
+  padding: 42rpx 25rpx  ;
+width: 700rpx;
+background: #fff;
+}
+.boss{
+  width: 750rpx;
+  height: 182rpx;
+  background: #fff;
+  margin-top: 10rpx;
+  overflow: hidden;
+}
+.boss_title{
+ width:726rpx;
+height:60rpx;
+background:rgba(255,255,255,1);
+font-size:22rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(243,165,95,1);
+line-height: 60rpx;
+margin-left: 24rpx;
+}
+.boss_details{
+  width:750rpx;
+height:120rpx;
+background:rgba(255,255,255,1);
+}
+.boss_details_hand{
+  width:60rpx;
+height:60rpx;
+border-radius: 30rpx;
+margin-left: 24rpx;
+margin-top: 30rpx;
+float: left;
+
+}
+.boss_details_name{
+  font-size:28rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(51,51,51,1);
+line-height: 120rpx;
+margin-left: 30rpx;
+float: left;
+max-width: 400rpx;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+}
+.boss_details_phone{
+  font-size:28rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(101,182,233,1);
+line-height: 120rpx;
+margin-left: 30rpx;
+float: left;
+}
+.person{
+  width:750rpx;
+height:60rpx;
+background:rgba(255,255,255,1);
+}
+.person_title{
+    width:750rpx;
+height:60rpx;
+background:rgba(255,255,255,1);
+}
+.person_title_text{
+  font-size:22rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(243,165,95,1);
+line-height: 60rpx;
+margin-left: 24rpx;
+float: left;
+}
+.person_people1{
+  float: left;
+  margin-left: 227rpx;
+  width:38rpx;
+height:25rpx;
+margin-top: 20rpx;
+}
+.person_people1_text{
+  float: left;
+  margin-left: 4rpx;
+  font-size:22rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(101,211,79,1);
+line-height: 60rpx;
+}
+.person_people1_text2{
+    float: left;
+  margin-left: 4rpx;
+  font-size:22rpx;
+font-family:SourceHanSansCN-Regular;
+line-height: 60rpx;
+}
+.person_people2{
+  float: left;
+  margin-left: 60rpx;
+  width:22rpx;
+height:22rpx;
+margin-top: 20rpx;
+}
+.person_people2_text{
+    float: left;
+  margin-left: 4rpx;
+  font-size:22rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(101,211,79,1);
+line-height: 60rpx;
+}
+.person_hand{
+  width: 442rpx;
+  /* height: 130rpx; */
+  background: #fff;
+  margin-top: 2rpx;
+  padding-left: 308rpx;
+  padding-bottom: 10rpx;
+}
+.handone{
+  width: 50rpx;
+  float: left;
+  margin-left: 27rpx;
+}
+.hand{
+  width:50rpx;
+height:50rpx;
+border-radius: 25rpx;
+margin-top: 29rpx;
+}
+.handname{
+  font-size:18rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(51,51,51,1);
+overflow: hidden;
+height: 23rpx;
+}
+.tiaoz{
+  width:16rpx;
+height:27rpx;
+float: right;
+margin-top: -52rpx;
+margin-right: 24rpx;
+}
+.participant{
+  width: 50rpx;
+  margin-left: 28rpx;
+  overflow: hidden;
+  float: left;
+  margin-top: 2rpx;
+}
+.participant_hand{
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 27rpx;
+  border-radius: 25rpx;
+}
+.participant_name{
+  font-size:18rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(51,51,51,1);
+max-width: 70rpx;
+overflow: hidden;
+white-space: normal;
+text-overflow:ellipsis;
+height: 25rpx;
+}
+.photo{
+  width: 750rpx;
+  /* height: 322rpx; */
+  overflow: hidden;
+  margin-top: 10rpx;
+}
+.photo_text{
+  width: 725rpx;
+  height: 60rpx;
+padding-left: 25rpx;
+background: #fff;
+float:left;
+font-size:22rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(243,165,95,1);
+line-height: 60rpx;
+}
+.upimg{
+  width:22rpx;
+height:17rpx;
+float: right;
+margin-top: 27rpx;
+margin-right: 9rpx;
+}
+.uptext{
+  float: right;
+  margin-right: 30rpx;
+}
+.photo_one{
+  margin-top: 2rpx;
+  width:242rpx;
+height:260rpx;
+background:#fff;
+float: left;
+margin-left: 10rpx;
+}
+.photo_img{
+  width:210rpx;
+height:180rpx;
+margin-left: 20rpx;
+margin-top: 16rpx;
+}
+
+.photo_name{
+  font-size:20rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(51,51,51,1);
+margin-left: 20rpx;
+margin-top: 10rpx;
+}
+.frame{
+  width: 750rpx;
+  height: 3rpx;
+  background: #f5f5f5;
+}
+
+
+
+
+
+
+
+
+.ssdad{
+   width: 750rpx;
+   height: 90rpx;
+   background:transparent;
+   margin-top: 1.6vw;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0;
+  justify-content:space-between;
+}
+.share{
+  width: 375rpx;
+  height: 90rpx;
+  background:rgba(255,255,255,1);
+  font-size:32rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(51,51,51,1);
+line-height: 90rpx;
+text-align: center;
+}
+.sign{
+    width: 375rpx;
+  height: 90rpx;
+  background:rgba(247,132,69,1);
+  font-size:32rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(255,255,255,1);
+line-height: 90rpx;
+text-align: center;
+}
+.come{
+width:140rpx;
+height:60rpx;
+background:rgba(247,198,67,1);
+border-radius:30rpx;
+font-size:32rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(51,51,51,1);
+line-height: 60rpx;
+text-align: center;
+margin: 0 auto;
+}
+.upupimg{
+  width:750rpx;
+height:90px;
+background:rgba(0,0,0,0.7);
+font-size:32rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(255,255,255,1);
+line-height: 90rpx;
+text-align: center;
+}

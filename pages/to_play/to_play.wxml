@@ -1,0 +1,85 @@
+<!--pages/to_play/to_play.wxml-->
+<view class='header' touchstart='creat' tap='out'>
+
+  <!-- 主题选择 -->
+  <view class='all_theme'>
+    <view bindtap='to_item' wx:for="{{ all_theme }}" wx:key="unique" id='{{item.id}}' data-index='{{index}}' class='theme'>
+      <image src='{{ item.imgUrl }}'></image>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 搜索功能 -->
+  <view class='search'>
+    <view class='search_input_box'>
+      <image src='/images/icon/search.png'></image>
+      <input placeholder='搜索' bindinput='input'></input>
+    </view>
+    <text class='search_btn' bindtap='search'>搜索</text>
+  </view>
+</view>
+
+<!-- 我是分割线 -->
+<view class='fatline'></view>
+
+  <!-- 热点景点 -->
+<view class='hot_list'>
+  <view bindtap='to_hot_item' wx:for='{{ hot_list }}' wx:key="unique" id='{{item.id}}' class='hot_item' data-index= '{{ index }}'>
+    <text>{{ item.name }}</text>
+  </view>
+</view>
+
+<!-- 我是分割线 -->
+<view class='fatline'></view>
+
+
+<!-- 内容 -->
+<view class='content' >
+  <view class='content_nav'>
+    <view class='content_nav_box'>    
+      <view bindtap='to_content_nav' wx:for="{{ content_nav }}" wx:key="unique" id='{{ item.id }}' data-index='{{index}}' class='content_nav_item'>
+        <text>{{ item.name }}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 游玩列表 -->
+  <view class='activity'  wx:for="{{ activity_list }}" wx:key="unique" >
+    <view class='thinline'></view>
+    <view class='activity_list'  bindtap='to_detail'  data-index=' {{ index }}'>
+      <image class='activity_photo' src='{{item.show_url}}'></image>
+      <view class='arr_detail'>
+        <view class='activity_title'> {{ item.name }}</view>
+        <view class='place_detail'> {{ item.description }}</view>
+        <view class='arr_box'>
+          <image class='activity_cion' src='/images/location.png'></image>
+          <text> {{ item.address }}</text>
+        </view>
+      </view>
+    </view>
+        <view class='thinline'></view>
+    <view class='activity_footer'>
+            <view class='gone'  bindtap='change_gone_photo' data-index=' {{ index }}'>
+              <image src="{{ item.markType == 1? ('/images/icon/collection.png'):('/images/icon/uncollection.png')}}"  class='gone_img'></image>
+              <text>我去过</text>
+            </view>
+            <view class='wanted'  bindtap='change_wanted_photo' data-index=' {{ index }}'>
+              <image src="{{ item.markType == 2 ?('/images/icon/wanted.png'):('/images/icon/want.png')}}" class='wanted_img'></image>
+              <text>我想去</text>
+            </view>
+            <view class='play_with' bindtap='play_with'>
+              相伴去玩
+            </view>
+    </view>
+      <view class='fatline'></view>
+  </view>
+</view>
+
+
+<view class='createActivity' style='opacity: {{ animation }}; bottom: {{ bottom }};'>
+  <image src='/images/icon/add2.png'  catchtap='creat'></image>
+</view>
+<view class='fatline'></view>
+<view class='bottomer' style='display:{{ bottomer }}'>
+  ~~到底了~~
+</view>

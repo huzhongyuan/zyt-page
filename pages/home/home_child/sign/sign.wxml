@@ -1,0 +1,27 @@
+<!--pages/home/home_child/sign/sign.wxml-->
+
+<view class='my_child_frame'>
+  <view class='my_child_data_child'>姓名</view>
+  <input class='my_child_data_input' placeholder="报名者姓名" bindinput="inputValue">{{inputValue}}</input>
+</view>
+<view class='line'></view>
+<view class='my_child_frame'>
+  <view class='my_child_data_child'>电话</view>
+  <input class='my_child_data_input' type='number' Number="11" placeholder="填写联系方式" bindinput="inputphone">{{inputphone}}</input>
+</view>
+
+<view class='line'></view>
+<view class='my_child_frame'>
+  <view class='my_child_data_child'>大人</view>
+  <input class='my_child_data_input' type='number' placeholder="填写大人人数" bindinput="inputadult">{{inputadult}}</input>
+
+</view>
+<view class='line'></view>
+<view class='my_child_frame'>
+  <view class='my_child_data_child'>小孩</view>
+  <input class='my_child_data_input' type='number' Number="11" placeholder="填写小孩人数" bindinput="inputchild">{{inputchild}}</input>
+</view>
+<view class='line'></view>
+
+<button class='btn_sure' bindtap='upup'>提交</button>
+

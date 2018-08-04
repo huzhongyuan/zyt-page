@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/home/home",
+    "pages/my/my",
+    "pages/add/add",
+    "pages/home/home_child/home_child",
+    "pages/home/home_child/sign/sign",
+    "pages/my/my_child/my_child",
+    "pages/my/my_info/my_info",
+    "pages/home/home_child/signno/signno",
+    "pages/home/home_child/sign_in/sign_in",
+    "pages/home/home_child/share/share",
+    "pages/home/ongoing/ongoing",
+    "pages/home/home_child/photo/photo",
+    "pages/add/add_details/add_details",
+    "pages/my/my_news/my_news",
+    "pages/home/home_child/photo/photo_child/photo_child",
+    "pages/to_play/to_play",
+    "pages/to_play/list_scenic/list_scenic",
+    "pages/to_play/detail_Activity/detail_Activity",
+    "pages/to_play/detail_item/detail_item",
+    "pages/to_play/map/map"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#49ab0a",
+    "navigationBarTitleText": "周游团",
+    "navigationBarTextStyle": "#fff"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#49ab0a",
+    "position": "bottom",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/icon/home.png",
+        "selectedIconPath": "images/icon/home2.png"
+      },
+      {
+        "pagePath": "pages/to_play/to_play",
+        "text": "去游玩",
+        "iconPath": "images/icon/资源 20.png",
+        "selectedIconPath": "images/icon/资源 22.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/icon/my.png",
+        "selectedIconPath": "images/icon/my2.png"
+      }
+    ]
+  }
+}

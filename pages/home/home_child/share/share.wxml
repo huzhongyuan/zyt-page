@@ -1,0 +1,8 @@
+<!--pages/home/home_child/share/share.wxml-->
+<image class='bcimg' src='{{src}}'></image>
+
+<view class='share'>
+    <button class='btn_img' bindtap="onSavePicClick" >保存图片</button>
+    <view class='btn_img' bindtap="onSavePicClick" >保存图片</view>     
+  <button class='btn_share' data-statu="close" open-type="share" >发给好友</button> 
+</view>

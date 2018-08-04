@@ -1,0 +1,104 @@
+/* pages/home/home_child/sign/sign.wxss */
+/* pages/activity/activity_Child/activity_sure/activity_sure.wxss */
+page{
+  padding-top: 47rpx;
+  
+}
+.my_child_frame{
+   width: 730rpx;
+   height: 79rpx;
+   background-color: #fff;
+   margin-left: 10rpx;
+   overflow: hidden;  
+}
+.my_child_data_child{
+  font-size:30rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(77,77,77,1);
+line-height: 79rpx;
+margin-left: 30rpx;
+float: left;
+}
+.my_child_data_child2{
+  font-size:30rpx;
+font-family:SourceHanSansCN-Regular;
+line-height: 79rpx;
+margin-left: 7rpx;
+float: left;
+color: #f00;
+}
+.Inner_monologue{
+    font-size:30rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(77,77,77,1);
+line-height: 79rpx;
+margin-left: 34rpx;
+margin-top: 15rpx;
+float: left;
+}
+.my_child_data_value{
+  float: right;
+  font-size:30rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(77,77,77,1);
+line-height: 79rpx;
+margin-right: 31rpx;
+}
+.my_child_data_input{
+  font-size:30rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(77,77,77,1);
+line-height: 102rpx;
+margin-right: 31rpx;
+text-align: center;
+margin-top:15rpx;
+}
+.my_child_data_input2{
+  font-size:30rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(77,77,77,1);
+line-height: 102rpx;
+/* margin-right: 31rpx; */
+text-align: right;
+margin-top:15rpx;
+/* margin-left:245rpx; */
+}
+.line{
+  width: 750rpx;
+  height: 2rpx;
+  background:rgba(230,230,230,1);
+}
+.perfect{
+  font-size:24rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(0,0,0,1);
+margin-top: 139rpx;
+text-align: center;
+}
+.btn_sure{
+  width:300rpx;
+height:80rpx;
+background:#F78445;
+border-radius:30rpx;
+margin-top: 134rpx;
+font-size:32rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(255,255,255,1);
+line-height: 80rpx;
+}
+.code{
+  display: flex;
+  width:280rpx;
+height:280rpx;
+/* margin: 0 auto; */
+margin: 291rpx auto  0;
+/* margin-top: 291rpx; */
+/* justify-content: center; */
+}
+.tis{
+  font-size:24rpx;
+font-family:SourceHanSansCN-Regular;
+color:rgba(0,0,0,1);
+text-align: center;
+margin-top: 20rpx;
+}

@@ -1,0 +1,12 @@
+<!--pages/home/home_child/signno/signno.wxml-->
+<view class='hand'>
+  <view class='hand_text'>共{{array.members.length}}人</view>
+</view>
+<view class='signone' wx:for="{{array.members}}"  wx:key="">
+  <image class='signone_img' mode='aspectFill' src='{{item.headImg}}'></image>
+  <view class='signone_name'>{{item.nickname}}</view>
+  <view class='signone_time'>{{item.gmtCreate}}</view>
+    <view class='signone_phonet' style='display:{{dis}}' >联系电话</view>
+  <view class='signone_phone'style='display:{{dis}}' >{{item.email}}</view>
+  <view class='line'></view>
+</view> 

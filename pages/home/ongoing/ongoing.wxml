@@ -1,0 +1,48 @@
+<!--pages/home/ongoing/ongoing.wxml-->
+  <view class='one' bindtap='to_child'>
+    <image class='one_img' src='../../../images/activity.png' mode='aspectFill' ></image>
+    <view class='one_titele'>奇趣小手艺 浓浓亲子情</view>
+    <image class='one_time' src='../../../images/time.png' mode='aspectFill' ></image>
+    <view class='one_time_text'>2018.10.01—2018.10.05</view>
+    <image class='one_location' src='../../../images/location.png' mode='aspectFit'></image>
+    <view class='one_location_text'>石桥铺正街99号红槽房</view>
+    <!-- <view class='one_people'>24人已报名</view> -->
+  </view>
+
+
+  <view class='png' bindtap='to_phone'> 
+    <view class='png_text'>最近活动照</view>
+    <view class='png_one'>
+      <image class='png_one_img' mode='aspectFill'src='../../../images/lbt.png'></image>
+      <view class='png_one_text'>呼呼</view>
+    </view>
+      <view class='png_one'>
+      <image class='png_one_img' mode='aspectFill'src='../../../images/lbt.png'></image>
+      <view class='png_one_text'>呼呼</view>
+    </view>
+      <view class='png_one'>
+      <image class='png_one_img' mode='aspectFill' src='../../../images/add.png'></image>
+      <view class='png_one_text'></view>
+    </view>
+  </view>
+
+<view class='linesadasd'></view>
+  <view class='one' bindtap='to_child'>
+    <image class='one_img' src='../../../images/activity.png' mode='aspectFill' ></image>
+    <view class='one_titele'>奇趣小手艺 浓浓亲子情</view>
+    <image class='one_time' src='../../../images/time.png' mode='aspectFill' ></image>
+    <view class='one_time_text'>2018.10.01—2018.10.05</view>
+    <image class='one_location' src='../../../images/location.png' mode='aspectFit'></image>
+    <view class='one_location_text'>石桥铺正街99号红槽房</view>
+     <view class='one_people'>24人已报名</view> 
+  </view>
+
+    <view class='one' bindtap='to_child'>
+    <image class='one_img'mode='aspectFill' src='../../../images/activity.png' mode='aspectFill' ></image>
+    <view class='one_titele'>奇趣小手艺 浓浓亲子情</view>
+    <image class='one_time'  mode='aspectFill' src='../../../images/time.png' mode='aspectFill' ></image>
+    <view class='one_time_text'>2018.10.01—2018.10.05</view>
+    <image class='one_location' mode='aspectFill' src='../../../images/location.png' mode='aspectFit'></image>
+    <view class='one_location_text'>石桥铺正街99号红槽房</view>
+     <view class='one_people'>24人已报名</view> 
+  </view>

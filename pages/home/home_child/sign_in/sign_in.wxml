@@ -1,0 +1,20 @@
+<!--pages/home/home_child/sign_in/sign_in.wxml-->
+
+<view class='hand'>
+  <view class='hand_text'>共{{array.members.length}}人</view>
+</view>
+  <!-- 已签到 -->
+<view class='signed' wx:for="{{array.members}}"  wx:key="" >
+  <image class='signed_img' src='{{item.headImg}}' mode='aspectFill' ></image>
+  <view class='signed_name'>{{item.nickname}}</view>
+  <view class='signed_timet' style='display:{{dis}}'>签到时间</view>
+  <view class='signed_time' style='display:{{dis}}' >{{item.time}}</view>  
+<view class='nosign' style='display:{{play}}' >未签到</view>
+</view>
+
+  <!--未签到  -->
+  <!-- <view class='signed'>
+  <image class='signed_img' src='../../../../images/lbt.png' mode='aspectFill' ></image>
+  <view class='signed_name'>蜡笔小新</view>
+<view class='nosign'>未签到</view>  
+</view> -->

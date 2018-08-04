@@ -1,0 +1,11 @@
+<!--pages/my/my_child/my_child.wxml-->
+
+    <view class='one' bindtap='to_child'  wx:for="{{array}}"  wx:key="" id = "{{item.id}}">
+    <image class='one_img' mode='aspectFit'src='{{item.coverImg}}'></image>
+    <view class='one_titele'>{{item.title}}</view>
+    <image class='one_time'  mode='aspectFit' src='../../../images/time.png'></image>
+    <view class='one_time_text'>{{item.beginTime}}—{{item.endTime}}</view>  
+    <image class='one_location' mode='aspectFit'  src='../../../images/location.png'></image>
+    <view class='one_location_text'>{{item.place}}</view>
+    <!-- <view class='one_people'>{{item.personNum}}人已报名</view> -->
+  </view>

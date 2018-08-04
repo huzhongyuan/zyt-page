@@ -1,0 +1,97 @@
+<!--pages/add/add.wxml-->
+<view class='bcimg'>
+  <image class='bc_img' src='{{img}}' mode='aspectFit'></image>
+<image class='add_img' src='../../images/addimg.png' bindtap='add_img'></image>
+</view>
+
+  <view class="section">
+    <view class="section__title">标题</view>
+    <input class="input" placeholder="输入活动标题" placeholder-style="opacity: 0.5;font-size:32rpx;"  bindinput="bindKeyInput"/>
+  </view>
+  <view class="section">
+    <view class="section__title">活动类别</view>
+   <picker bindchange="bindpayclasskind" value="{{classkind}}" range="{{classkind}}">
+    <view class="picker">
+      {{classkind[classkindd]}}
+    </view>
+    <!-- <image class='section_image' src='../../images/forme_to.png'></image> -->
+  </picker>
+  </view>
+  <view class="section">
+    <view class="section__title">人数</view>
+    <input class="input" placeholder="输入参与人数，不填则表示不限制"  placeholder-style="opacity: 0.5;font-size:32rpx;"  bindinput="Inputnumber"/>
+  </view>
+
+    <view class="section">
+    <view class="section__title">开始日期</view>
+    <picker mode="date" value="{{date}}" start="2015-09-01" bindchange="bindDateChange">
+      <view class="picker">{{date}}
+      </view>
+
+    </picker>
+  </view>
+
+<view class="section">
+  <view class="section__title">开始时间</view>
+  <picker mode="time" value="{{time}}" start="00:01" end="23:59" bindchange="bindTimeChange">
+    <view class="picker">
+     {{time}}
+    </view>
+
+  </picker>
+</view>
+  <view class="section">
+    <view class="section__title">结束日期</view>
+    <picker mode="date" value="{{date}}" start="2015-09-01" bindchange="bindDateChange2">
+      <view class="picker">{{date2}}</view>
+    </picker>
+  </view>
+
+<view class="section">
+  <view class="section__title">结束时间</view>
+  <picker mode="time" value="{{time}}" start="00:01" end="23:59" bindchange="bindTimeChange2">
+    <view class="picker">
+      {{time2}}
+    </view>
+  </picker>
+</view>
+
+  <view class="sections" >
+    <view class="section__title">地址</view>
+    <!-- <input class="input" placeholder="选择活动地址" placeholder-style="opacity: 0.5;font-size:32rpx;"   bindinput="choisemap"/> -->
+    <view class='input' bindtap='choisemap'>{{address.name}}</view>
+    <view class='input' bindtap='choisemap'>{{address.address}}</view>    
+  </view>
+
+  <view class="section">
+    <view class="section__title">费用</view>
+   <picker bindchange="bindpayMethodChange" value="{{payMethod}}" range="{{payMethod}}">
+    <view class="picker">
+      {{payMethod[payMethodd]}}
+    </view>
+    <!-- <image class='section_image' src='../../images/forme_to.png'></image> -->
+  </picker>
+  </view>
+
+
+
+  <view class="section">
+    <view class="section__title">详情</view>
+    <!-- <input class="input" placeholder="输入活动要求" placeholder-style="opacity: 0.5;font-size:32rpx;"   bindinput="bindKeyInput"/> -->
+        <view class='input' bindtap='{{details.btn}}'>{{details.name}}</view>
+  </view>
+<view class='asdadsa'></view>
+  <view class="section">
+    <view class="section__title">发布人</view>
+       <button  class="picker_btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> {{userinfo.nickname}} </button>
+  </view>
+
+  <view class="section" >
+    <view class="section__title">电话</view>
+      <button  class="picker_btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> {{userinfo.email}} </button>
+  </view>
+  <view class='addframe'></view>
+
+<button class='complete' bindtap='asdk'>立即上传</button>
+
+

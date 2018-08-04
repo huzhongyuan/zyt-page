@@ -1,0 +1,63 @@
+<!--pages/home/home.wxml-->
+<!--导航轮播  -->
+<swiper class="swiper-box" autoplay="true" interval="5000" duration="700" circular="true" indicator-color="#bdcedd" indicator-dots="true" indicator-active-color="#ffffff">
+  <block wx:for="{{imgUrls}}" wx:key="">
+    <swiper-item  >
+      <image src="{{item}}" class="slide-imagec slide-image" mode='aspectFill' />
+    </swiper-item>
+  </block>
+</swiper>
+<!-- 消息通知 -->
+
+<!--导航轮播  -->
+<swiper class="swiper-box2" autoplay="true" interval="3000" duration="700" circular="true"  vertical="true" >
+  <block wx:for="{{news}}" wx:key="">
+    <swiper-item>
+   <view class='news'>
+  <view class='news_btn'>消息通知</view>
+  <view class='news_text'>{{item.content}}</view>
+</view>
+    </swiper-item>
+  </block>
+</swiper>
+
+
+<!-- 最新消息 -->
+<view class='myactivity'  bindtap='to_child'  wx:for="{{array}}"  wx:key="" id = "{{item.id}}" >
+  <view class='myactivity_btn'>
+    <image class='myactivity_btn_img' src='../../images/forme_to.png'></image>
+    <view class='myactivity_btn_text'>进行中</view>
+  </view>
+ <view class='one' bindtap='to_child'  wx:for="{{activity}}"  wx:key="" id = "{{item.id}}">
+    <image class='one_img' mode='aspectFit'src='{{item.coverImg}}'></image>
+    <view class='one_titele'>{{item.title}}</view>
+    <image class='one_time'  mode='aspectFit' src='../../images/time.png'></image>
+    <view class='one_time_text'>{{item.beginTime}}—{{item.endTime}}</view>  
+    <image class='one_location' mode='aspectFit'  src='../../images/location.png'></image>
+    <view class='one_location_text'>{{item.place}}</view>
+  </view>
+</view>
+<!-- 活动类型 -->
+<view class='c_class'>
+  <view class='c_class-c' >
+    <view class='c_one' wx:for="{{classkind}}" wx:key="" id= "{{item.id}}" bindtap='choisekind'>
+      <view class='c_red {{item.class}} '>{{item.name}}</view>
+      <view class='{{item.class2}}'></view>
+    </view>
+  </view>
+</view>
+
+<!-- 具体活动 -->
+<view class='activity_child'>
+  <view class='one' bindtap='to_child'  wx:for="{{activity}}"  wx:key="" id = "{{item.id}}">
+    <image class='one_img' mode='aspectFit'src='{{item.coverImg}}'></image>
+    <view class='one_titele'>{{item.title}}</view>
+    <image class='one_time'  mode='aspectFit' src='../../images/time.png'></image>
+    <view class='one_time_text'>{{item.beginTime}}—{{item.endTime}}</view>  
+    <image class='one_location' mode='aspectFit'  src='../../images/location.png'></image>
+    <view class='one_location_text'>{{item.place}}</view>
+    <view class='one_people'>{{item.personNum}}人已报名</view>
+  </view>
+</view>
+
+<view class='onone' style='display:{{null1}}'>没有更多活动了</view>

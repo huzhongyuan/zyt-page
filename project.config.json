@@ -1,0 +1,149 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.98",
+	"appid": "wx3e1ce3039c616778",
+	"projectname": "%E5%91%A8%E6%B8%B8%E5%9B%A2",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "首页（home",
+					"pathName": "pages/home/home",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的（my",
+					"pathName": "pages/my/my",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布(add",
+					"pathName": "pages/add/add",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "活动详情(home_child",
+					"pathName": "pages/home/home_child/home_child",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "报名详情(home_child/sign",
+					"pathName": "pages/home/home_child/sign/sign",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的活动详情（my/my_child/",
+					"pathName": "pages/my/my_child/my_child",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人资料(my/my_info",
+					"pathName": "pages/my/my_info/my_info",
+					"query": ""
+				},
+				{
+					"id": 7,
+					"name": "已报名详情(/home/home_child",
+					"pathName": "pages/home/home_child/signno/signno",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "签到详情(home/home_child/sign_in",
+					"pathName": "pages/home/home_child/sign_in/sign_in",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "分享(home/home_child/share",
+					"pathName": "pages/home/home_child/share/share",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "进行中的活动(/home/ongoing",
+					"pathName": "pages/home/ongoing/ongoing",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "活动照片(home/home_child/photo",
+					"pathName": "pages/home/home_child/photo/photo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页（home",
+					"pathName": "pages/home/home",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "去游玩（to_play",
+					"pathName": "pages/to_play/to_play",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "去游玩景点列表（to_play/list_scenic/list_scenic",
+					"pathName": "pages/to_play/list_scenic/list_scenic",
+					"query": ""
+				},
+				{
+					"id": 15,
+					"name": "去游玩活动详情detail_Activity",
+					"pathName": "pages/to_play/detail_Activity/detail_Activity",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "去游玩活动项目详情detail_item",
+					"pathName": "pages/to_play/detail_item/detail_item",
+					"query": ""
+				},
+				{
+					"id": 17,
+					"name": "地图(map",
+					"pathName": "pages/to_play/map/map",
+					"query": ""
+				}
+			]
+		}
+	}
+}

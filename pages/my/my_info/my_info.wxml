@@ -1,0 +1,24 @@
+<!--pages/my/my_info/my_info.wxml-->
+
+<view class='my_child_frame'>
+  <!-- <view class='my_child_data_child'>姓名</view>
+   -->
+   <image class='my_child_data_hand' mode='aspectFill' src='{{userinfo.avatarUrl}}' ></image>
+    <input class='my_child_data_input' placeholder="{{userinfo.nickName}}" placeholder-style="opacity:1;" bindinput="inputValue">{{userinfo.nickName}}</input>
+  <!-- <image class='my_child_data_imgto' src='../../../images/forme_to.png'> </image> -->
+</view>
+
+
+<view class='my_child_frame'>
+  <view class='my_child_data_child'>姓名</view>
+  <input class='my_child_data_input' placeholder="{{userinfo.nickname}}" placeholder-style="opacity:1;" bindinput="inputValue">{{inputValue}}</input>
+    <image class='my_child_data_imgto' src='../../../images/forme_to.png'> </image>
+</view>
+
+<view class='my_child_frame'>
+  <view class='my_child_data_child'>电话</view>
+  <input class='my_child_data_input' type='number' Number="11"  placeholder-style="opacity:1;" placeholder="{{userinfo.phone}}" bindinput="inputphone">{{inputphone}}</input>
+    <image class='my_child_data_imgto' src='../../../images/forme_to.png'> </image>
+</view>
+
+<button class='btn_sure' bindtap='upup'>保存</button>

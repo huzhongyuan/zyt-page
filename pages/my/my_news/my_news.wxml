@@ -1,0 +1,8 @@
+<!--pages/my/my_news/my_news.wxml-->
+<view class='content' wx:for='{{array3}}'  wx:key="" >
+  <view class='time'>{{item.time}}</view>
+  <image class='hand' src='{{item.headImgUrl}}'></image>
+  <view class='name'>{{item.name}}</view>
+  <view class='Answer'>{{item.answer}}</view>
+  <view class='Prompt ' style='display:{{item.display}}'>1</view>
+</view>

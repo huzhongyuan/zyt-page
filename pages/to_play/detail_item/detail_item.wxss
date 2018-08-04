@@ -1,0 +1,168 @@
+/* pages/to_play/detail_Activity/detail_Activity.wxss */
+@import "/wxParse/wxParse.wxss";
+.photo {
+  width: 750rpx;
+  height: 260rpx;
+}
+.photo image{
+  width: 750rpx;
+  height: 260rpx;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  width: 750rpx;
+}
+.title {
+  font-size: 32rpx;
+  color: #333232;
+  margin-left: 25rpx;
+  margin-top: 24rpx;
+}
+.chargeMode{
+  font-size: 32rpx;
+  color: #F3A55F;
+  margin-left: 25rpx;
+  margin-top:20rpx;
+  margin-bottom: 22rpx;
+}
+.line {
+  width: 750rpx;
+  height: 4rpx;
+  background-color: #cccccc;
+}
+.place {
+  width: 750rpx;
+    margin-bottom: 27rpx;
+}
+.place image {
+  margin-top: 29rpx;
+  width: 24rpx;
+  height: 31rpx;
+  margin-left: 26rpx;
+}
+.addr {
+  color: #333232;
+  font-size: 26rpx;
+  margin-left: 22rpx;
+  display: inline;
+}
+
+.introdution {
+  width: 750rpx;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 80rpx;
+}
+.introdution text {
+  margin-top: 19rpx;
+  width: 674rpx;
+  color: #333232;
+  font-size: 26rpx;
+  overflow : hidden;
+  /* text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; */
+
+}
+
+.play_header {
+  width: 750rpx;
+  margin-bottom: 16rpx;
+}
+
+.meal_title {
+  font-size: 32rpx;
+  color: #333333;
+  margin-left: 25rpx;
+  margin-top: 26rpx;
+}
+.meal_introduce {
+    font-size: 24rpx;
+    color: #333333;
+    opacity: 0.5;
+    margin-top: 5rpx;
+    margin-left: 30rpx;
+}
+.meal_list {
+  margin-top: 25rpx;
+}
+
+.play_item_image {
+  width: 310rpx;
+  height: 170rpx;
+}
+.play_lsit {
+  width: 750rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.play_item_box {
+  display: flex;
+  flex-direction: column;
+  margin-left: 26rpx;
+}
+
+.play_text_title {
+  display: block;
+  font-size: 24rpx;
+  color: #333232;
+  margin: 21rpx 0;
+  margin-right: 10rpx;
+}
+.play_text_price {
+  display: block;
+  font-size: 32rpx;
+  color: #F78445;
+  margin-top: 20rpx;
+}
+
+.black {
+  width: 750rpx;
+  height: 172rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0rpx;
+  width: 750rpx;
+  height: 90rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.share button {
+  border: 0px;
+  width: 250rpx;
+  height: 90rpx;
+  color: #333333;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.want_go {
+  width: 250rpx;
+  height: 90rpx;
+  color: white;
+  background-color: #49AB0A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.play_with {
+  width: 250rpx;
+  height: 90rpx;
+  color: white;
+  background-color: #F78445;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wP {
+  width: 750rpx;
+  padding: 0rpx 25rpx;
+}

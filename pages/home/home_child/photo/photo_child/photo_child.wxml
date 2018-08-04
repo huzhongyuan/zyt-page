@@ -1,0 +1,18 @@
+<!--pages/home/home_child/photo/photo_child/photo_child.wxml-->
+<view class='pone' wx:for="{{imgarray}}" wx:key = "">
+<image class='asdasdasdasd' mode='aspectFit' id="{{item.id}}"  bindtap='delall' src='../../../../../images/del.png'  style='display:{{asdasd}}'></image>
+  <image class='pone_hand' mode='aspectFit' src='{{item.userInfo.headImg}}'></image>
+  <view class='pone_name'>{{item.userInfo.nickname}}</view>
+  <view class='pone_time'>{{item.gmt_create}}</view>
+  <image class='pone_img' mode='aspectFit'wx:for="{{item.images}}" id='{{item.attachment_id}}' bindlongtap='delone' wx:key = "" src='{{item.show_url}}'>
+<!-- <image class='asdasdasdasd' mode='aspectFit' src='../../../../../images/del.png'></image>   -->
+  </image>
+  <view class='good' bindtap='praise' id='{{item.id}}' >
+    <view class='good_text'>{{item.praise}}</view>
+    <image class='good_img' mode='aspectFit' src='../../../../../images/good.png'></image>
+  </view>
+</view>
+<view class='ssdad'>
+<image class='addimgs' bindtap='addimagssss' src='../../../../../images/add2.png'></image>
+</view>
+
