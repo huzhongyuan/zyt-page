@@ -1,6 +1,6 @@
 <!--pages/home/home_child/home_child.wxml-->
 <!-- 图片 -->
-<image class='titleimg' src='{{activity.coverImg}}' mode='aspectFit'></image>
+<image class='titleimg' src='{{activity.coverImg}}' mode='aspectFit' binderror="errImg" data-errorimg="{{index}}"></image>
 <!-- 题目 -->
 <view class='title'>
   <view class='title_text'>{{activity.title}}</view>
@@ -55,8 +55,8 @@
 <!-- 悬浮按钮 -->
 <!-- 未报名 -->
  <view class=' ssdad '   style='display:{{sign}}'>
-  <view class='share ' bindtap='share'>分享</view>
-  <view class='sign ' bindtap='sign'>立即报名</view>
+  <button open-type='share' class='share'>分享</button>
+  <view class='sign ' bindtap='sign' style='background:{{ sign_bg }}'>{{ sign_up }}</view>
 </view> 
 <!-- 未签到 -->
  <view class='ssdad ' bindtap='come' style='display:{{come}}'  >
@@ -86,7 +86,7 @@
   </view>
   <view class='frame '></view>
   <view class='photo_one '  wx:for="{{imgarray}}" wx:key="">
-    <image class='photo_img ' mode='aspectFill ' src='{{item.show_url}}'></image>
+    <image class='photo_img ' mode='aspectFill ' src='{{item.show_url}}'  binderror="errImg1" data-errorimg="{{index}}"></image>
     <view class='photo_name '>{{item.userInfo.nickname}}</view>
   </view>
 </view>

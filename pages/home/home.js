@@ -1,6 +1,7 @@
 // pages/home/home.js
 var app = getApp()
 var pageNo = 1
+import com from '../to_play/util.js'
 function formatDateTime(inputTime) {
   var date = new Date(inputTime);
   var y = date.getFullYear();
@@ -70,7 +71,8 @@ Page({
         // console.log(res)
         wx.stopPullDownRefresh()
         if (res.data.result == '') {
-          null1 = 'block'
+          null1 = 'block';
+          pageNo--;//下拉加载的时候没有数据了页码需要减一
         } else {
           null1 = 'none'
         }
@@ -80,7 +82,7 @@ Page({
           activity[y].beginTime = formatDateTime(res.data.result[t].beginTime)
           activity[y].endTime = formatDateTime(res.data.result[t].endTime)
         }
-        // console.log(activity)
+         //console.log(activity)
         that.setData({
           activity: activity,
           null1:null1
@@ -94,16 +96,30 @@ Page({
   },
   onShow: function () {
     pageNo = 1
-var that = this
-    var array = this.data.array
-    array = []
-    var activity = this.data.activity
     var that = this
+    var array = that.data.array
+    array = []
+    var activity = that.data.activity
     activity = []
     that.setData({
       activity: activity
     })
     that.jiaz()
+
+    //获取轮播图
+    wx.request({
+      url: app.globalData.url + '/banner/getBannerList',
+      success: function (res) {
+        //console.log(res)
+        that.setData({
+          imgUrls: res.data.result
+        })
+      },
+      fail: function (e) {
+        console.log(e)
+      }
+    })
+
     // 进行中活动
     wx.request({
       url: app.globalData.url + '/activity/getActivityByUserId',
@@ -113,7 +129,6 @@ data:{
   status:1
 },
       success: function (res) {
-console.log(res)
         array = res.data.result
         that.setData({
           array: array
@@ -128,8 +143,8 @@ console.log(res)
     wx.request({
       url: app.globalData.url + '/message/getSysMessageList',
       success: function (res) {
-        console.log(res)
-        news = res.data.result
+        console.log(res);
+        news = res.data.result;
         that.setData({
           news: news
         })
@@ -161,7 +176,7 @@ console.log(res)
       url: app.globalData.url + '/message/haveUnreadMessage/' + app.globalData.loginId,
 
       success: function (res) {
-        console.log(res)
+       // console.log(res);
         if (res.data.msg == "没有未读消息") {
           wx.hideTabBarRedDot({
             index: 2,
@@ -257,5 +272,11 @@ wx.navigateTo({
     wx.navigateTo({
       url: 'ongoing/ongoing',
     })
+  },
+  //图片加载异常处理
+  errImg: function (e) {
+    var errorImgIndex = e.target.dataset.errorimg //获取循环的下标
+    var imgObject = "activity[" + errorImgIndex + "].coverImg" //carlistData为数据源，对象数组
+    com.errorImg(this, e, imgObject);
   }
 })

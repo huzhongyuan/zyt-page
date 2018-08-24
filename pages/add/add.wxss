@@ -75,47 +75,54 @@ button[class="picker_btn"]::after {
 } 
 .input{
     font-size:32rpx;
-font-family:SourceHanSansCN-Regular;
-color:rgba(77,77,77,1);
-padding-top: 25rpx;
-margin-right: 60rpx;
-text-align: right;
-margin-left: 50rpx;
-/* width: 625rpx; */
-/* float: right; */
-white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis;
+    font-family:SourceHanSansCN-Regular;
+    color:rgba(77,77,77,1);
+    padding-top: 25rpx;
+    margin-right: 60rpx;
+    text-align: right;
+    margin-left: 50rpx;
+    /* width: 625rpx; */
+    /* float: right; */
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    border: none;
+    background-color: white;
+    /* display: flex; */
+    display: block;
+}
+.input::after{
+  border: none;
 }
 .input2{
-    font-size:30rpx;
-font-family:SourceHanSansCN-Regular;
-color:rgba(77,77,77,1);
-padding-top: 25rpx;
-margin-right: 60rpx;
-text-align: right;
-margin-left: 50rpx;
-width: 590rpx;
+  display: inherit;
+  font-size: 24rpx;
+  padding-top: 0rxp;
+  margin-right: 60rpx;
+}
+.addrbtn {
+  padding-top: 0rpx;
+  padding-right: 0rpx;
 }
 .section_image{
   width:19rpx;
-height:32rpx; 
-margin-top: -34rpx;
-float: right;
-margin-right: 30rpx;
+  height:32rpx; 
+  margin-top: -34rpx;
+  float: right;
+  margin-right: 30rpx;
 }
 .complete{
     width:710rpx;
-height:80rpx; 
-background:rgba(247,132,69,1);
-border-radius: 50rpx;
-float: left;
-margin-top: 34rpx;
-margin-left: 19rpx;
-font-size:32rpx;
-font-family:SourceHanSansCN-Regular;
-color:rgba(255,255,255,1);
-line-height: 80rpx;
+  height:80rpx; 
+  background:rgba(247,132,69,1);
+  border-radius: 50rpx;
+  float: left;
+  margin-top: 34rpx;
+  margin-left: 19rpx;
+  font-size:32rpx;
+  font-family:SourceHanSansCN-Regular;
+  color:rgba(255,255,255,1);
+  line-height: 80rpx;
 }
 
 .bcimg{

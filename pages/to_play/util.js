@@ -12,35 +12,12 @@ const to_detail =  (e, that) => {
   })
 };
 
-
-
-//点击收藏/喜欢数据请求
-// const rq = (that ,id, url) => {
-//   wx.request({
-//     url: url,
-//     data: {
-//       id: id
-//     },
-//     dataType: 'get',
-//     header: {
-//       'content-type': 'application/json' // 默认值
-//     },
-//     success: function(json) {
-//       console.log('success');
-//     }
-//   })
-// };
-
-
 //收藏
 const change_gone_photo = (res,that) => {
   let index = res.currentTarget.dataset.index.replace(/(^\s*)|(\s*$)/g, "");
   let p = 'activity_list[' + index + '].gone_photo';
   let checkgone = (that.data.activity_list[index].markType == 1) ? true : false;
-  console.log(checkgone)
   let hasgone = 'activity_list[' + index + '].markType';
-  console.log(that.data.activity_list[index].id);
-  //console.log(app.globalData.loginId);
   if (!checkgone) {
     wx.request({
       url: app.globalData.url + '/placeUser/markPlace',
@@ -63,27 +40,6 @@ const change_gone_photo = (res,that) => {
     })
 
   } else {
-    // wx.request({
-    //   url: app.globalData.url + '/placeUser/markPlace',
-    //   method: 'GET',
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   data: {
-    //     placeId: that.data.activity_list[index].id,
-    //     loginId: app.globalData.loginId || 315,
-    //     type: ''
-    //   },
-    //   success: function (json) {
-    //     console.log(json);
-    //     if (json.data.success) {
-    //       that.setData({
-    //         [p]: '/images/icon/uncollection.png',
-    //         [hasgone]: ''
-    //       });
-    //     }
-    //   }
-    // })
   }
 };
 
@@ -116,25 +72,6 @@ const change_wanted_photo = (res,that) => {
       }
     })
   } else {
-    // wx.request({
-    //   url: app.globalData.url + '/placeUser/markPlace',
-    //   method: 'GET',
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   data: {
-    //     placeId: that.data.activity_list[index].id,
-    //     loginId: app.globalData.loginId,
-    //     'type': ''
-    //   },
-    //   success: function (json) {
-    //     console.log(json.data.data);
-    //     that.setData({
-    //       [p]: '/images/icon/want.png',
-    //       [haswanted]: false
-    //     })
-    //   }
-    // })
 
   }
 };
@@ -145,7 +82,7 @@ const input = (e, that) => {
   that.setData({
     input_text: e.detail.value
   });
-  console.log(that.data.input_text);
+  // console.log(that.data.input_text);
 };
 
 
@@ -158,23 +95,30 @@ const search = (e, that) => {
         input_text: ''
       })
     }
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/to_play/list_scenic/list_scenic?name=' + that.data.input_text,
     })
   // }
 };
 
+
 //调用地图API
-const toMap = (that) => {
+const toMap = (that, rId, rType) => {
   // wx.navigateTo({
   //   url: '/pages/to_play/map/map',
   // })
-  wx.getLocation({
-    type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-    success: function (res) {
-      console.log(res);
-      var latitude = res.latitude
-      var longitude = res.longitude
+  console.log('rId=' + rId + ',rType=' + rType);
+  wx.request({
+    url: app.globalData.url + '/mapAddress/getMapAddress',
+    data: {
+      rId: rId,
+      rType: rType
+    },
+    success:function(e) {
+      console.log(e);
+      let latitude = parseFloat(e.data.result.lat);
+      let longitude = parseFloat(e.data.result.lng);
+      console.log('latitude=' + latitude + ',longitude' + longitude);
       wx.openLocation({
         latitude: latitude,
         longitude: longitude,
@@ -182,6 +126,14 @@ const toMap = (that) => {
       })
     }
   })
+  // wx.getLocation({
+  //   type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+  //   success: function (res) {
+  //     console.log(res);
+  //     var latitude = res.latitude
+  //     var longitude = res.longitude
+  //   }
+  // })
 };
 
 //分享
@@ -214,11 +166,32 @@ const wanttoplay = (that, placeId) => {
 };
 
 //约伴去玩
-const playwith = (that) => {
-  wx.navigateTo({
-    url: '/pages/add/add',
+const playwith = (that, rId, rType, name, address) => {
+  wx.request({
+    url: app.globalData.url + '/mapAddress/getMapAddress',
+    data: {
+      rId: rId,
+      rType: rType
+    },
+    success: function (e) {
+      console.log(e);
+      let latitude = parseFloat(e.data.result.lat);
+      let longitude = parseFloat(e.data.result.lng);
+      console.log('latitude=' + latitude + ',longitude' + longitude);
+      wx.navigateTo({
+        url: '/pages/add/add?name=' + name + '&address=' + address + '&latitude=' + latitude + '&longitude=' + longitude,
+      })
+    }
   })
 };
+
+//图片异常处理
+const errorImg = (that, e, imgObject) => {
+  var errorImg = {}
+  errorImg[imgObject] = "http://manage.watx365.com/img/zwimg.png" //我们构建一个对象
+  that.setData(errorImg) //修改数据源对应的数据
+};
+
  module.exports = {
   test: test, //测试
   to_detail: to_detail, //转到活动详情
@@ -230,4 +203,5 @@ const playwith = (that) => {
   toMap: toMap, //地图
   wanttoplay: wanttoplay,//我想去玩
   playwith: playwith,//约伴去玩
+  errorImg: errorImg,//图片异常处理
 }

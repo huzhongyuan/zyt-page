@@ -18,12 +18,13 @@ let loadmore = (that) => {
       pageSize: 5
     },
     success: function (json) {
-      console.log(json)
+      // console.log(json)
       if (json.data.result.length < 5) {
         that.setData({
           bottomer: 'flex'
         })
       }
+      if (json.data.result.length == 0) pageNo--;
       let activity_list = that.data.activity_list;
       activity_list.push(...json.data.result);
       that.setData({
@@ -54,14 +55,16 @@ Page({
     //活动列表
     activity_list: [],
     bottomer: 'none',
-
+    name: '',
+    input_text: ''
   },
 
 
   onLoad: function(options) {
+    //初始化搜索条件
     [typeName, focus, charge, name, pageNo] = ['', '按人气排序', '免费', '', 1];
 
-    //console.log(options.id);
+    //接受主页的传值
     let that = this;
     if (options.typeName) {
       typeName = options.typeName;
@@ -72,12 +75,11 @@ Page({
         text:name
       })
     }
-  //console.log('typeName='+ typeName + ';;name='+name);
+
     //得到主题
     wx.request({
       url: app.globalData.url + '/placeType/getTypeList/1',
       success: function(e) {
-        //console.log(e.data.result);
         let themeData = ['全部'];
         for (let i  in e.data.result){
           themeData.push(e.data.result[i].name);
@@ -94,6 +96,16 @@ Page({
     })
   //加载活动列表
   loadmore(this);
+  },
+  //下拉刷新
+  onPullDownRefresh: function (e) {
+    pageNo = 1;
+    this.setData({
+      activity_list: [],
+      bottomer: 'none',
+    })
+    loadmore(this);
+    wx.stopPullDownRefresh()
   },
   //上拉触底事件
   onReachBottom:function(e) {
@@ -113,7 +125,6 @@ Page({
     let that = this;
     that.rcolor(that);
     let selectData = this.data.themeData;
-    // console.log(selectData);
     let nowIndex = 0;
     let color = 'color[' + nowIndex +']';
     if (!this.data.show ) {
@@ -187,29 +198,6 @@ Page({
     }
   },
 
-  //点击选项卡数据渲染
-  getData: function (that, url, dataList) {
-    // console.log(1);
-    // wx.request({
-    //   url: '',
-    //   data: dataList,
-    //   dataType: 'get',
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success: function (json) {
-    //     that.setData({
-    //       activity_list: json
-    //     })
-    //   },
-    //   fail: function(json) {
-    //     wx.showModal({
-    //       title: '服务器错误',
-    //       content: '请重新选择',
-    //     })
-    //   }
-    // })
-  },
 
   // 点击下拉列表
   optionTap(e) {
@@ -228,8 +216,6 @@ Page({
       charge = this.data.typeData[Index];
       console.log(charge);
     }
-    // console.log('nowIndex' + nowIndex);
-    // console.log(Index);
     //数据加载
     this.setData({
       activity_list: [],
@@ -267,7 +253,14 @@ Page({
 
   //搜索功能
   search: function (e) {
-    common.search(e, this);
+    [typeName, focus, charge, pageNo] = ['', '按人气排序', '免费', 1];
+    let input_text = this.data.input_text;
+    name = this.data.input_text;
+    this.setData({
+      index: [0,0,0],
+      activity_list: []
+    })
+    loadmore(this);
   },
   
   //收藏
@@ -281,10 +274,20 @@ Page({
   },
   //约伴去玩
   play_with: function (e) {
-    common.playwith(this);
+    let index = parseInt(e.currentTarget.dataset.index);
+    let rId = this.data.activity_list[index].id;
+    let name = this.data.activity_list[index].name;
+    let address = this.data.activity_list[index].address;
+    common.playwith(this, rId, 2, name, address);
   },
   //转到活动详情界面
   to_detail: function (res) {
     common.to_detail(res, this);
+  },
+  //活动图片加载异常处理
+  errImg: function (e) {
+    var errorImgIndex = e.target.dataset.errorimg //获取循环的下标
+    var imgObject = "activity_list[" + errorImgIndex + "].show_url" //carlistData为数据源，对象数组
+    common.errorImg(this, e, imgObject);
   }
 })

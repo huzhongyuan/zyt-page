@@ -19,7 +19,7 @@
   </view>
   <view class="section">
     <view class="section__title">人数</view>
-    <input class="input" placeholder="输入参与人数，不填则表示不限制"  placeholder-style="opacity: 0.5;font-size:32rpx;"  bindinput="Inputnumber"/>
+    <input class="input" placeholder="输入参与人数"  placeholder-style="opacity: 0.5;font-size:32rpx;"  bindinput="Inputnumber"/>
   </view>
 
     <view class="section">
@@ -59,8 +59,8 @@
   <view class="sections" >
     <view class="section__title">地址</view>
     <!-- <input class="input" placeholder="选择活动地址" placeholder-style="opacity: 0.5;font-size:32rpx;"   bindinput="choisemap"/> -->
-    <view class='input' bindtap='choisemap'>{{address.name}}</view>
-    <view class='input' bindtap='choisemap'>{{address.address}}</view>    
+    <button class='input addrbtn' open-type='{{open}}' bindopensetting='openset' bindtap='choisemap'>{{address.name}}</button>
+    <button class='input input2 addrbtn' open-type='{{open}}'  bindtap='choisemap'>{{address.address}}</button>    
   </view>
 
   <view class="section">

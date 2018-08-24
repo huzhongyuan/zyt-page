@@ -23,13 +23,13 @@ Page({
     this.setData({
       inputphone: e.detail.value
     })
-    console.log(inputphone.length)
+    console.log(this.data.inputphone);
+    //console.log(inputphone.length)
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
   },
 
   /**
@@ -54,17 +54,17 @@ Page({
       url: app.globalData.url + '/wxAuthUser/userInfo',
       data: {
         loginId: app.globalData.loginId
-
       },
       success: function (res) {
-console.log(res)
+console.log(res); 
 if (res.data.result.email== ''){
             userinfo.phone = '填写联系方式'
         }else{
-  inputphone = res.data.result.email
-  userinfo.phone = res.data.result.email
+  inputphone = res.data.result.email;
+  userinfo.phone = res.data.result.email;
         }
-userinfo.nickname = res.data.result.nickname
+userinfo.nickname = res.data.result.nickname;
+        //app.globalData.userInfo.nickname = res.data.result.nickname;
 that.setData({
   userinfo: userinfo,
   inputphone: inputphone
@@ -80,50 +80,67 @@ that.setData({
     var inputphone = this.data.inputphone
     var inputValue = this.data.inputValue
     var authUser = this.data.authUser
-    console.log(inputValue)
-    if (inputValue == '') {
+    console.log(inputValue);
+    if (!inputphone) {
       wx.showToast({
-        title: '姓名未修改',
-        icon: 'none',
-        duration: 2000
-      })
-    } else if (inputphone.length != 11) {
-      wx.showToast({
-        title: '联系方式错误',
-        icon: 'none',
-        duration: 2000
-      })
-    } else {
-      console.log(app.globalData.loginId)
-      authUser.id = app.globalData.loginId
-      authUser.nickname = this.data.inputValue
-      authUser.email = this.data.inputphone
-      wx.request({
-        url: app.globalData.url + '/wxAuthUser/updateUserInfo',
-        method: "POST",
-        data: authUser,
-        success: function (res) {
-          var datas = res.data;
-          console.log(res)
-          wx.showModal({
-            title: '提示',
-            content: res.data.msg,
-            showCancel:false,
-            success: function (res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-wx.navigateBack({
-  
-})
-              }
-            }
-          })
-
-        },
-        fail: function (res) {
-          console.log(res)
+        title: '未进行修改',
+        duration: 2000,
+        success:function() {
+          setTimeout(function(){
+            wx.navigateBack({}) 
+          },2000)    
         }
       })
+    } else {
+      if (inputphone.length != 11) {
+        wx.showToast({
+          title: '联系方式错误',
+          icon: 'none',
+          duration: 2000
+        })
+      } else {
+        if (this.data.inputValue == '') {
+          //console.log('空');
+          this.setData({
+            inputValue: that.data.userinfo.nickname
+          })
+          //console.log(this.data.inputValue);
+        }
+        console.log(app.globalData.loginId)
+        authUser.id = app.globalData.loginId
+        authUser.nickname = this.data.inputValue
+        authUser.email = this.data.inputphone
+        wx.request({
+          url: app.globalData.url + '/wxAuthUser/updateUserInfo',
+          method: "POST",
+          data: authUser,
+          success: function (res) {
+            var datas = res.data;
+            console.log(res)
+            if (res.data.success == true) {
+              wx.showToast({
+                title: '保存成功',
+                duration: 2000,
+                success: function () {
+                  setTimeout(function () {
+                    wx.navigateBack({})
+                  }, 2000)
+                }
+              })
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: res.data.msg,
+              })
+            }
+
+
+          },
+          fail: function (res) {
+            console.log(res)
+          }
+        })
+      }
     }
   },
   /**

@@ -3,15 +3,17 @@ const app = getApp();
 import common from './util.js'
 let pageNo = 1; // 主页页数
 let name = '推荐';
+
+//加载活动数据
 let loadmore = (that) => {
-  console.log('页数'+pageNo  + ' ' + name);
   wx.request({
     url: app.globalData.url + '/place/getPlaceListByCondition',
     data: {
       loginId: app.globalData.loginId || 1,
       pageNo: pageNo,
       pageSize: 5,
-      name: name
+      name: name,
+      input_text: ' '
     },
     success: function (e) {
       if(e.data.result.length < 5) {
@@ -19,6 +21,10 @@ let loadmore = (that) => {
           bottomer: 'flex'
         })
       }
+
+      if(e.data.result.length == 0 )
+        pageNo --;
+
       let activity_list = that.data.activity_list;
       activity_list.push(...e.data.result);
       that.setData({
@@ -34,8 +40,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    animation: 1,
-    bottom: '20rpx',
+    bottom: '0rpx',
     bottomer: 'none',
     activity_list: []
   //搜索框文本数据
@@ -78,49 +83,19 @@ Page({
     //得到游玩列表
     console.log()
     loadmore(this);
-    // wx.request({
-    //   url: 'https://easy-mock.com/mock/5b51d3d69ce5fe26a0a30475/to_play',
-    //   method: 'GET',
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success: function(json) {
-    //     //console.log(json);
-    //     that.setData({
-    //       // all_theme: json.data.all_theme,
-    //       //hot_list: json.data.hot_list,
-    //       //content_nav: json.data.content_nav,
-    //       //activity_list: json.data.activity_list
-    //     })
-    //   }
-    // });
+  },
+  //下拉刷新
+  onPullDownRefresh:function(e){
+    pageNo = 1;
+    this.setData({
+      activity_list: [],
+      bottomer: 'none',
+    })
+    loadmore(this);
+    wx.stopPullDownRefresh()
   },
   //上拉触底事件: 
   onReachBottom:function(e) {
-    // console.log(1);
-    // let that = this;
-    // wx.request({
-    //   url: app.globalData.url + '/place/getPlaceListByCondition',
-    //   data: {
-    //     loginId: app.globalData.loginId || 1,
-    //     pageNo: pageNo,
-    //     pageSize: 5,
-    //     name: name
-    //   },
-    //   success: function (e) {
-    //     if (e.data.result.length < 5) {
-    //       that.setData({
-    //         bottomer: 'flex'
-    //       })
-    //     }
-    //     let activity_list = that.data.activity_list;
-    //     activity_list.push(...e.data.result);
-    //     that.setData({
-    //       activity_list: activity_list
-    //     });
-    //     pageNo ++;
-    //   }
-    // })
     loadmore(this);
   },
     //转到项目详情
@@ -156,7 +131,12 @@ Page({
   },
   //约伴去玩
   play_with: function (e) {
-    common.playwith(this);
+    let index = parseInt(e.currentTarget.dataset.index);
+    console.log(index);
+    let rId = this.data.activity_list[index].id;
+    let name = this.data.activity_list[index].name;
+    let address = this.data.activity_list[index].address;
+    common.playwith(this, rId, 2, name, address);
   },
   //转到某一热门景点
   to_hot_item: function(e) {
@@ -178,80 +158,26 @@ Page({
     })
     let index = parseInt(e.currentTarget.dataset.index);
     name = that.data.content_nav[index].name;
-    //console.log(index + name);
     loadmore(this);
-    // wx.request({
-    //   url: app.globalData.url + '/place/getPlaceListByCondition',
-    //   method: 'GET',
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   data: {
-    //     loginId: app.globalData.loginId || 315,
-    //     pageNo: pageNo,
-    //     pageSize: 5,
-    //     name: name
-    //   },
-    //   success: function (json) {
-    //     if( json.data.result.length < 5) {
-    //       that.setData({
-    //         bottomer: 'flex'
-    //       })
-    //     }
-    //     that.setData({
-    //       activity_list: json.data.result
-    //     })
-    //   }
-    // })
   },
 
-  //淡入淡出动画效果
+  //创建活动
   creat: function(e) {
-    // console.log(1);
-    //   let Fadeflag = true;
-    //   let num = 10;
-    //   let bt = 20;
-    //   let that =  this;
-    //   if (Fadeflag) {
-    //     var st = setInterval(function () {
-    //       num--;
-    //       bt = bt - 2;
-    //       Fadeflag = false;
-    //       that.setData({
-    //         animation: (num / 10),
-    //         bottom: bt + 'rpx'
-    //       })
-    //       if (num <= 0) {
-    //         clearInterval(st);
-    //         Fadeflag = true;
-    //       }
-    //     }, 30);
-    //   }
       wx.navigateTo({
         url: './../add/add',
       })
   },
 
-  //淡出效果
-  // out:function(e) {
-  //   let Fadeflag = true;
-  //   let num = 0;
-  //   let bt = 0;
-  //   let that = this;
-  //   if (Fadeflag) {
-  //     var st = setInterval(function () {
-  //       num++;
-  //       bt = bt + 2;
-  //       Fadeflag = false;
-  //       that.setData({
-  //         animation: (num / 10),
-  //         bottom: bt + 'rpx'
-  //       })
-  //       if (num >= 10) {
-  //         clearInterval(st);
-  //         Fadeflag = true;
-  //       }
-  //     }, 30);
-  //   }
-  // }
+  //主题活动图片加载异常处理
+  errImg1: function (e) {
+    var errorImgIndex = e.target.dataset.errorimg //获取循环的下标
+    var imgObject = "all_theme[" + errorImgIndex + "].imgUrl" //carlistData为数据源，对象数组
+    common.errorImg(this, e, imgObject);
+  },
+  //活动图片加载异常处理
+  errImg: function (e) {
+    var errorImgIndex = e.target.dataset.errorimg //获取循环的下标
+    var imgObject = "activity_list[" + errorImgIndex + "].show_url" //carlistData为数据源，对象数组
+    common.errorImg(this, e, imgObject);
+  }
 })

@@ -1,6 +1,6 @@
 <!--pages/to_play/to_play.wxml-->
 <view class='photo'>
-  <image src='{{ detail.show_url }}'></image>
+  <image src='{{ detail.show_url }}' binderror="errImg" data-errorimg="{{index}}"></image>
 </view>
 <view class='header'>
   <view class='title'>{{ detail.name }}</view>
@@ -32,7 +32,7 @@
   <view class='play_lsit'>
     <view class='play_item' wx:for="{{ item_list }}"  wx:key="unique" id="{{ item.id }}" data-index="{{ index }}"  bindtap='to_detail'>
       <view class='play_item_box'>
-        <image class='play_item_image' src='{{ item.show_url }}'></image>
+        <image class='play_item_image' src='{{ item.show_url }}' binderror="errImg1" data-errorimg="{{index}}"></image>
         <view class='play_text_box'>
           <view class='play_text_title'>{{ item.name }}</view>
           <view class='play_text_price'> {{ item.charge }}</view>

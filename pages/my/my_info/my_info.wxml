@@ -4,7 +4,7 @@
   <!-- <view class='my_child_data_child'>姓名</view>
    -->
    <image class='my_child_data_hand' mode='aspectFill' src='{{userinfo.avatarUrl}}' ></image>
-    <input class='my_child_data_input' placeholder="{{userinfo.nickName}}" placeholder-style="opacity:1;" bindinput="inputValue">{{userinfo.nickName}}</input>
+    <input class='my_child_data_input' placeholder="{{userinfo.nickName}}" placeholder-style="opacity:1;" bindinput="inputValue" disabled="true">{{userinfo.nickName}}</input>
   <!-- <image class='my_child_data_imgto' src='../../../images/forme_to.png'> </image> -->
 </view>
 

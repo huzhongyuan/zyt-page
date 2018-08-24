@@ -1,6 +1,6 @@
 {
       "window": {
-        "enablePullDownRefresh": true,
         "onReachBottomDistance": 50
-      }
+      },
+              "enablePullDownRefresh": true
 }

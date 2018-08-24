@@ -4,7 +4,7 @@
   <!-- 主题选择 -->
   <view class='all_theme'>
     <view bindtap='to_item' wx:for="{{ all_theme }}" wx:key="unique" id='{{item.id}}' data-index='{{index}}' class='theme'>
-      <image src='{{ item.imgUrl }}'></image>
+      <image src='{{ item.imgUrl }}' binderror="errImg1" data-errorimg="{{index}}"></image>
       <text>{{item.name}}</text>
     </view>
   </view>
@@ -47,7 +47,7 @@
   <view class='activity'  wx:for="{{ activity_list }}" wx:key="unique" >
     <view class='thinline'></view>
     <view class='activity_list'  bindtap='to_detail'  data-index=' {{ index }}'>
-      <image class='activity_photo' src='{{item.show_url}}'></image>
+      <image class='activity_photo' src='{{item.show_url}}' binderror="errImg" data-errorimg="{{index}}"></image>
       <view class='arr_detail'>
         <view class='activity_title'> {{ item.name }}</view>
         <view class='place_detail'> {{ item.description }}</view>
@@ -67,7 +67,7 @@
               <image src="{{ item.markType == 2 ?('/images/icon/wanted.png'):('/images/icon/want.png')}}" class='wanted_img'></image>
               <text>我想去</text>
             </view>
-            <view class='play_with' bindtap='play_with'>
+            <view class='play_with' bindtap='play_with' data-index=' {{ index }}'>
               相伴去玩
             </view>
     </view>
@@ -76,8 +76,8 @@
 </view>
 
 
-<view class='createActivity' style='opacity: {{ animation }}; bottom: {{ bottom }};'>
-  <image src='/images/icon/add2.png'  catchtap='creat'></image>
+<view class='createActivity' style='opacity: 1; bottom: {{ bottom }};'>
+  <image src='/images/creat.png'  catchtap='creat'></image>
 </view>
 <view class='fatline'></view>
 <view class='bottomer' style='display:{{ bottomer }}'>

@@ -3,7 +3,7 @@
   <image class='pone_hand' bindtap='to_child' id="{{item.userInfo.id}}" mode='aspectFill' src='{{item.userInfo.headImg}}'></image>
   <view class='pone_name' bindtap='to_child' id="{{item.userInfo.id}}">{{item.userInfo.nickname}}</view>
   <view class='pone_time' bindtap='to_child' id="{{item.userInfo.id}}" >{{item.gmt_create}}</view>
-  <image class='pone_img' bindtap='to_child' id="{{item.userInfo.id}}"  mode='aspectFill' src='{{item.show_url}}'></image>
+  <image class='pone_img' bindtap='to_child' id="{{item.userInfo.id}}" binderror="errImg" data-errorimg="{{index}}" mode='aspectFill' src='{{item.show_url}}'></image>
   <view class='good' bindtap='praise' id='{{item.id}}'>
     <view class='good_text'> {{item.praise}}</view>
     <image class='good_img' mode='aspectFill' src='../../../../images/good.png'></image>

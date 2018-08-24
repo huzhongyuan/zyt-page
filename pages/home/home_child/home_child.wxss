@@ -253,11 +253,11 @@ margin-right: 9rpx;
 }
 .photo_one{
   margin-top: 2rpx;
-  width:242rpx;
-height:260rpx;
-background:#fff;
-float: left;
-margin-left: 10rpx;
+  width:240rpx;
+  height:260rpx;
+  background:#fff;
+  float: left;
+  margin-left: 10rpx;
 }
 .photo_img{
   width:210rpx;

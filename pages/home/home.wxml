@@ -3,7 +3,7 @@
 <swiper class="swiper-box" autoplay="true" interval="5000" duration="700" circular="true" indicator-color="#bdcedd" indicator-dots="true" indicator-active-color="#ffffff">
   <block wx:for="{{imgUrls}}" wx:key="">
     <swiper-item  >
-      <image src="{{item}}" class="slide-imagec slide-image" mode='aspectFill' />
+      <image src="{{item.imgUrl}}" class="slide-imagec slide-image" mode='aspectFill' />
     </swiper-item>
   </block>
 </swiper>
@@ -29,7 +29,7 @@
     <view class='myactivity_btn_text'>进行中</view>
   </view>
  <view class='one' bindtap='to_child'  wx:for="{{activity}}"  wx:key="" id = "{{item.id}}">
-    <image class='one_img' mode='aspectFit'src='{{item.coverImg}}'></image>
+    <image class='one_img' mode='aspectFit' src='{{item.coverImg}}' binderror="errImg" data-errorimg="{{index}}"></image>
     <view class='one_titele'>{{item.title}}</view>
     <image class='one_time'  mode='aspectFit' src='../../images/time.png'></image>
     <view class='one_time_text'>{{item.beginTime}}—{{item.endTime}}</view>  
@@ -50,7 +50,7 @@
 <!-- 具体活动 -->
 <view class='activity_child'>
   <view class='one' bindtap='to_child'  wx:for="{{activity}}"  wx:key="" id = "{{item.id}}">
-    <image class='one_img' mode='aspectFit'src='{{item.coverImg}}'></image>
+    <image class='one_img' mode='aspectFit'src='{{item.coverImg}}' binderror="errImg" data-errorimg="{{index}}"></image>
     <view class='one_titele'>{{item.title}}</view>
     <image class='one_time'  mode='aspectFit' src='../../images/time.png'></image>
     <view class='one_time_text'>{{item.beginTime}}—{{item.endTime}}</view>  

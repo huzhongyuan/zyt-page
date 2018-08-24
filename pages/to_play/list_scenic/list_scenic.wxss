@@ -166,6 +166,7 @@
 .arr_box {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .arr_box text {
   color: #333333;

@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "周游团",
     "window": {
-      "enablePullDownRefresh": true,
-      "onReachBottomDistance": 50
-    }
+    "onReachBottomDistance": 50
+    },
+        "enablePullDownRefresh": true
 }

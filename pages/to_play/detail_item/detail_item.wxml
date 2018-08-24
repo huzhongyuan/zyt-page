@@ -1,7 +1,7 @@
 <!--pages/to_play/to_play.wxml-->
 <import src="/wxParse/wxParse.wxml"/>
 <view class='photo'>
-  <image src='{{ detail.show_url }}'></image>
+  <image src='{{ detail.show_url }}'  binderror="errImg" data-errorimg="{{index}}"></image>
 </view>
 <view class='header'>
   <view class='title'>{{ detail.name }}</view>

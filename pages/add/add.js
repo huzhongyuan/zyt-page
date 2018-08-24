@@ -20,6 +20,7 @@ Page({
     classkindd:0,
     details:{'name':'填写详情','btn':'to_details'},
     imagesid:'',
+    open: ''
   },
   to_details:function(){
       wx.navigateTo({
@@ -84,28 +85,89 @@ Page({
     })
   },
   choisemap: function (e) {
-    var that = this
-    var address = this.data.address
-    wx.chooseLocation({
-      success: function (res) {
-        console.log(res)
-        address.name = res.name 
-        address.address =res.address 
-        address.latitude = res.latitude 
-        address.longitude = res.longitude         
-        that.setData({
-          address:address
-        })
-      },
-      fail:function(e){
-console.log(e)
-wx.openSetting({
-  
-})
+    var that = this;
+    var address = this.data.address;
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userLocation']) {
+          that.setData({
+            open: ''
+          })
+          wx.chooseLocation({
+            success: function (res) {
+              console.log(res)
+              address.name = res.name
+              address.address = res.address
+              address.latitude = res.latitude
+              address.longitude = res.longitude
+              that.setData({
+                address: address
+              });
+
+            },
+            fail: function (e) {
+            }
+          })
+        } else {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success() {
+              that.setData({
+                open: ''
+              })
+              // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+              wx.chooseLocation({
+                success: function (res) {
+                  console.log(res)
+                  address.name = res.name
+                  address.address = res.address
+                  address.latitude = res.latitude
+                  address.longitude = res.longitude
+                  that.setData({
+                    address: address
+                  });
+                },
+                fail: function (e) {
+                  console.log(e)
+                }
+              })
+            },
+            fail:function(e) {
+              that.setData({
+                open: 'openSetting'
+              })
+            }
+          })
+        }
       }
     })
-  },
 
+  },
+  openset:function(e) {
+    console.log(e);
+    let that = this;
+    var address = this.data.address;
+    if (e.detail.authSetting['scope.userLocation']){
+      that.setData({
+        open: ''
+      })
+      wx.chooseLocation({
+        success: function (res) {
+          console.log(res)
+          address.name = res.name
+          address.address = res.address
+          address.latitude = res.latitude
+          address.longitude = res.longitude
+          that.setData({
+            address: address
+          });
+        },
+        fail: function (e) {
+          console.log(e)
+        }
+      })
+    }
+  },
   onShow: function () {
     var that = this
     var userinfo = this.data.userinfo
@@ -155,12 +217,14 @@ wx.openSetting({
     console.log(e)
     if (e.detail.errMsg == 'getUserInfo:fail auth deny'){
 
-    } else if (userinfo.email == ''){
-          wx.navigateTo({
-            url: '../my/my_info/my_info',
-          })
-    }
-  
+    } else {
+      console.log(e);
+      if (!userinfo.email) {
+        wx.navigateTo({
+          url: '../my/my_info/my_info',
+        })
+      }
+    } 
   },
   getPhoneNumber: function (e) {
     var that = this
@@ -282,14 +346,12 @@ that.setData({
           'user': 'test'
         },
         success: function (res) {
-          console.log(res)
+          res.data = res.data.replace(/\ufeff/g, "");
+          res.data = JSON.parse(res.data);
+          console.log(typeof (res.data));
+          console.log(res.data.success);
           if (res.data.success == true){
-            var jsonStr = res.data;
-            jsonStr = jsonStr.replace(" ", "");
-            if (typeof jsonStr != 'object') {
-              jsonStr = jsonStr.replace(/\ufeff/g, "");
-              var jj = JSON.parse(jsonStr);
-              res.data = jj;
+            console.log(111111111111111111111111111111111);
               imagesid = res.data.result[0].attachemId
 
               //上传活动
@@ -312,41 +374,47 @@ that.setData({
                     data: serviceRecord,
                     method: "POST",
                     success: function (res) {
-                      console.log(res)
-                      wx.hideLoading()
+                      if(res.data.success == true) {
+                        console.log(res)
+                        wx.hideLoading()
+                        wx.showModal({
+                          title: '提示',
+                          content: res.data.msg,
+                          showCancel: false,
+                          success: function () {
+                            wx.navigateBack({ changed: true });//返回上一页
+                          }
+                        })
+                      } else {
+                        wx.hideLoading()
+                        wx.showModal({
+                          title: '提示',
+                          content: res.data.msg,
+                          showCancel: false,
+                        })
+                      }
+
+                    },
+                    fail: function (res) {
+                      wx.hideLoading();
                       wx.showModal({
                         title: '提示',
                         content: res.data.msg,
                         showCancel: false,
-                        success: function () {
-                          wx.navigateBack({
-                          })
-                        }
                       })
-                    },
-                    fail: function (res) {
                       console.log(res)
                     }
                   })
                 }
               })
-            }
           } else{
             wx.hideLoading()
             console.log(res)
-            var jsonStr = res.data;
-            jsonStr = jsonStr.replace(" ", "");
-            if (typeof jsonStr != 'object') {
-              jsonStr = jsonStr.replace(/\ufeff/g, "");
-              var jj = JSON.parse(jsonStr);
-              res.data = jj;
-
             wx.showModal({
               title: '提示',
               content: res.data.msg,
               showCancel:false,
             })
-            }
          
           }
        
@@ -356,7 +424,18 @@ that.setData({
    
     }
   },
-  onLoad:function(){
+  onLoad:function(options){
+    console.log('1111111111' + options.name + options.address + options.latitude + options.longitude);
+    if(options.name) {
+      let address = {};
+      address.name = options.name;
+      address.address = options.address;
+      address.latitude = options.latitude;
+      address.longitude = options.longitude;
+      this.setData({
+        address: address
+      })
+    }
     var date = this.data.date
     var date2 = this.data.date2
     var timestamp = Date.parse(new Date());

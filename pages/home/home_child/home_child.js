@@ -1,5 +1,6 @@
 // pages/home/home_child/home_child.js
 var app = getApp()
+import com from '../../to_play/util.js'
 function formatDateTime(inputTime) {
   var date = new Date(inputTime);
   var y = date.getFullYear();
@@ -28,6 +29,8 @@ Page({
     upuping:'none',
     asdasdasd:'none',
     imgarray:[],
+    sign_up: '',
+    sign_bg: '',
   },
 
   /**
@@ -38,9 +41,9 @@ Page({
     classId = options.classid
     var activity = this.data.activity
     var that =this
-that.setData({
-  classId: classId
-})
+    that.setData({
+      classId: classId
+    })
   },
   // 签到
 come:function(e){
@@ -106,6 +109,7 @@ wx.showModal({
         console.log('活动图片')
         console.log(res)
         imgarray = res.data.result
+        console.log(imgarray);
         that.setData({
           imgarray: imgarray
         })
@@ -118,10 +122,26 @@ wx.showModal({
     wx.request({
       url: app.globalData.url + '/activity/getActivityDetail/' + classId,
       success: function (res) {
-        console.log(res)
-        activity = res.data.result
-        activity.beginTime = formatDateTime(res.data.result.beginTime)
-        activity.endTime = formatDateTime(res.data.result.endTime)
+        let nowtime = formatDateTime(new Date());
+        let endtime = formatDateTime(res.data.result.endTime);
+        let nt = Date.parse(new Date(nowtime)) / 1000;
+        let et = Date.parse(new Date(endtime)) / 1000;
+        if(nt - et > 0) {
+          that.setData({
+            sign_up: '活动过期',
+            sign_bg: '#cccccc'
+          })
+        } else {
+          that.setData({
+            sign_up: '立即报名',
+            sign_bg: 'rgba(247,132,69,1)'
+          })
+        }
+        console.log(res.data.result.endTime);
+        activity = res.data.result;
+        activity.beginTime = formatDateTime(res.data.result.beginTime);
+        activity.endTime = formatDateTime(res.data.result.endTime);
+        console.log(activity);
         that.setData({
           activity: activity,
           classId: classId
@@ -219,6 +239,16 @@ baom:function(){
   },
   // 去报名
   sign:function(e){
+    let nowtime = formatDateTime(new Date());
+    let endtime = this.data.activity.endTime;
+    let nt = Date.parse(new Date(nowtime)) / 1000;
+    let et = Date.parse(new Date(endtime)) / 1000;
+    console.log(nt - et);
+    console.log(nowtime);
+    console.log(endtime);
+    if (nt - et > 0) {
+      return false;
+    }
     var classId = this.data.classId    
   wx.navigateTo({
     url: 'sign/sign?classId=' + classId,
@@ -236,7 +266,6 @@ baom:function(){
           })
         }
       })
-  
     },
 
     //签到详情
@@ -264,5 +293,18 @@ baom:function(){
       wx.navigateTo({
         url: 'photo/photo?classId=' + classId,
       })
-    }
+    },
+      //图片加载异常处理
+  errImg: function (e) {
+    var errorImgIndex = e.target.dataset.errorimg //获取循环的下标
+    console.log(errorImgIndex)
+    var imgObject = "activity.coverImg" //carlistData为数据源，对象数组
+    com.errorImg(this, e, imgObject);
+  },
+  errImg1: function (e) {
+    var errorImgIndex = e.target.dataset.errorimg //获取循环的下标
+    console.log(errorImgIndex)
+    var imgObject = "imgarray[" + errorImgIndex + "].show_url" //carlistData为数据源，对象数组
+    com.errorImg(this, e, imgObject);
+  }
 })

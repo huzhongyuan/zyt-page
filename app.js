@@ -21,7 +21,6 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -37,7 +36,7 @@ App({
     loginId:null,
     userInfo: {},
     // url: 'http://fk3w42.natappfree.cc/api',
-    //url: 'https://www.iyoubang.com/api',
+    //url: 'http://www.iyoubang.com:8084/api',
     // url:'http://127.0.0.1:8082/api',
     url: 'http://118.24.159.161:8082/api'
   }

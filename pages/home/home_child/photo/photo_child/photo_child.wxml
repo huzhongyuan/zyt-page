@@ -4,7 +4,7 @@
   <image class='pone_hand' mode='aspectFit' src='{{item.userInfo.headImg}}'></image>
   <view class='pone_name'>{{item.userInfo.nickname}}</view>
   <view class='pone_time'>{{item.gmt_create}}</view>
-  <image class='pone_img' mode='aspectFit'wx:for="{{item.images}}" id='{{item.attachment_id}}' bindlongtap='delone' wx:key = "" src='{{item.show_url}}'>
+  <image class='pone_img' mode='aspectFit'wx:for="{{item.images}}" id='{{item.attachment_id}}' bindlongtap='delone' wx:key = "" src='{{item.show_url}}' binderror="errImg" data-errorimg="{{index}}">
 <!-- <image class='asdasdasdasd' mode='aspectFit' src='../../../../../images/del.png'></image>   -->
   </image>
   <view class='good' bindtap='praise' id='{{item.id}}' >

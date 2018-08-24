@@ -214,11 +214,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.5;
 }
 .createActivity image{
-  width: 94rpx;
-  height: 94rpx;
+  width: 141rpx;
+  height: 141rpx;
   opacity: 0.7
 }
 .bottomer {
@@ -226,6 +225,6 @@
   justify-content: center;
   color: #333333;
   font-size: 30rpx;
-  height: 80rpx;
+  height: 180rpx;
   align-items: center;
 }

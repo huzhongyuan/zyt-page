@@ -19,8 +19,6 @@ Page({
   onLoad: function (options) {
     //创建地图
     this.mapCtx = wx.createMapContext('myMap');
-    
-    console.log(options.id)
     let that = this;
     wx.request({
       url: app.globalData.url + '/placeProject/getProjectDetailById/'+ (options.id || 4),
@@ -29,13 +27,19 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function (json) {
-        console.log(json.data);
+        // console.log(json.data);
         that.setData({
           detail: json.data.result[0]
         })
+        if(!that.data.detail.show_url) {
+          let url = 'detail.show_url';
+          that.setData({
+            [url]: '1.png'
+          })
+        }
+        //详情转换为富文本
         let article = json.data.result[0].description;
         WxParse.wxParse('article', 'html', article, that, 5);
-        // WxParse.wxParse('article', 'html', json.data.result[0], that, 5)
         //查询地点
         let place_id = json.data.result[0].place_id;
         wx.request({
@@ -53,7 +57,7 @@ Page({
 
   //转到地图界面
   toMap: function (e) {
-    common.toMap();
+    common.toMap(this, this.data.detail.id, 1);
   },
 
   //分享功能
@@ -68,6 +72,15 @@ Page({
   },
   //约伴去玩
   play_with: function (e) {
-    common.playwith(this);
-  }
+    console.log(this.data.detail);
+    let rId = this.data.detail.id;
+    let name = this.data.detail.name;
+    let address = this.data.address;
+    common.playwith(this, rId, 2, name, address);
+  },
+  //背景图片加载异常处理
+  errImg: function (e) {
+    var imgObject = "detail.show_url" //carlistData为数据源，对象数组
+    common.errorImg(this, e, imgObject);
+  },
 })

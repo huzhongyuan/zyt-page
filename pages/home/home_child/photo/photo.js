@@ -1,5 +1,6 @@
 // pages/home/home_child/photo/photo.js
 var app = getApp()
+import com from '../../../../pages/to_play/util.js'
 function formatDateTime(inputTime) {
   var date = new Date(inputTime);
   var y = date.getFullYear();
@@ -45,6 +46,7 @@ Page({
         var tempFilePaths = res.tempFilePaths
         wx.showLoading({
           title: '上传中',
+          duration: 1000,
         })
         // 上传至服务器\
         var asd = ''
@@ -63,28 +65,41 @@ Page({
               // console.log(e.data.result[0].attachemId)
               var jsonStr = e.data;
               jsonStr = jsonStr.replace(" ", "");
-              if (typeof jsonStr != 'object') {
-                jsonStr = jsonStr.replace(/\ufeff/g, "");
+              jsonStr = jsonStr.replace(/\ufeff/g, "");
                 var jj = JSON.parse(jsonStr);
                 e.data = jj;
-                imagesid = imagesid + ',' + e.data.result[0].attachemId
-console.log(imagesid)
-that.setData({
-  imagesid: imagesid
-})
+              if (e.data.success == true) {
+                imagesid = imagesid + ',' + e.data.result[0].attachemId;
+                console.log(imagesid);
+                that.setData({
+                  imagesid: imagesid,
+                })
+                img = res.tempFilePaths[0]
+                // console.log(img[i])
+                that.setData({
+                  img: img,
+                })
+                setTimeout(function () {
+                  that.asdaasda()
+                }, 1000);
+              } else {
+                wx.hideLoading();
+                console.log(res.data.msg);
+                wx.showModal({
+                  title: '提示',
+                  content: e.data.msg,
+                  showCancel: false
+                })
+                
               }
+            },
+            fail:function(res) {
+              console.log(res);
+              console.log(res.data.msg);
             }
           })
         }
-       
-        img = res.tempFilePaths[0]
-        // console.log(img[i])
-        that.setData({
-          img: img,
-        })
-        setTimeout(function () {
-          that.asdaasda()          
-        }, 1000);
+      
       }
     })
 
@@ -95,7 +110,9 @@ that.setData({
     var classId = this.data.classId
     var classid = this.data.classid
     imagesid = imagesid.replace(',', '')
-    console.log(imagesid)  
+    console.log(imagesid);
+    imagesid = parseInt(imagesid);
+    console.log(typeof (imagesid));
     wx.request({
       url: app.globalData.url + '/activityComment/saveActivityCommentImages',
       data: {
@@ -104,14 +121,28 @@ that.setData({
         loginId: app.globalData.loginId
       },
       success: function (res) {
-        console.log(res)
-        wx.hideLoading()
-        wx.navigateBack({
-          
-        })
+        console.log(typeof(res.data))
+        if(res.data.success == true) {
+          console.log(res);
+          wx.hideLoading()
+          wx.navigateBack({})
+        } else {
+          console.log(res.data.msg);
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false
+          })
+        }
+
       },
       fail: function (res) {
         console.log(res)
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+          showCancel: false,
+        })
       }
     })
   },
@@ -145,6 +176,7 @@ that.setData({
           res.data.result[a].gmt_create = formatDateTime(res.data.result[a].gmt_create)
         }
         imgarray = res.data.result
+        console.log(imgarray);
         that.setData({
           imgarray: imgarray
         })
@@ -226,5 +258,11 @@ that.setData({
         console.log(e)
       }
     })
+  },
+  //图片异常处理
+  errImg: function (e) {
+    var errorImgIndex = e.target.dataset.errorimg //获取循环的下标
+    var imgObject = "imgarray[" + errorImgIndex + "].show_url" //carlistData为数据源，对象数组
+    com.errorImg(this, e, imgObject);
   }
 })

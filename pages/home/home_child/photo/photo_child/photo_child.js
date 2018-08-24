@@ -1,5 +1,6 @@
 // pages/home/home_child/photo/photo.js
 var app = getApp()
+import com from '../../../../../pages/to_play/util.js'
 function formatDateTime(inputTime) {
   var date = new Date(inputTime);
   var y = date.getFullYear();
@@ -53,17 +54,16 @@ Page({
           },
           success: function (e) {
             console.log(e)
-            // console.log(e.data)
-            // console.log(e.data.result[0].attachemId)
-
-
             var jsonStr = e.data;
-            jsonStr = jsonStr.replace(" ", "");
-            if (typeof jsonStr != 'object') {
               jsonStr = jsonStr.replace(/\ufeff/g, "");
               var jj = JSON.parse(jsonStr);
               e.data = jj;
-              console.log(e.data.result[0].attachemId)
+              console.log(e)
+            if (e.data.success == true) {
+              console.log('sucess');
+              console.log(e.data.result[0].attachemId);
+              e.data.result[0].attachemId = parseInt(e.data.result[0].attachemId);
+              console.log(typeof (e.data.result[0].attachemId));
               wx.request({
                 url: app.globalData.url + '/attachment/saveActivityImages',
                 data: {
@@ -72,22 +72,51 @@ Page({
                   loginId: app.globalData.loginId
                 },
                 success: function (res) {
-                  console.log(res)
-
+                  if (res.data.status == 404) {
+                    wx.showModal({
+                      title: '提示',
+                      content: res.data.message,
+                      showCancel: false,
+                    })
+                  }else {
+                    img = res.tempFilePaths[0]
+                    // console.log(img[i])
+                    that.setData({
+                      img: img
+                    })
+                    wx.showLoading({
+                      title: '上传成功',
+                      duration: 1000,
+                    })
+                  }
                 },
                 fail: function (res) {
-                  console.log(res)
+                  console.log(res);
+                  wx.showModal({
+                    title: '提示',
+                    content: e.data.msg,
+                    showCancel: false,
+                  })
                 }
+              })
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: e.data.msg,
+                showCancel: false,
               })
             }
 
+          },
+          fail: function(e) {
+            wx.showModal({
+              title: '提示',
+              content: e.data.msg,
+              showCancel: false,
+            })
           }
         })
-        img = res.tempFilePaths[0]
-        // console.log(img[i])
-        that.setData({
-          img: img
-        })
+
       }
     })
 
@@ -127,6 +156,7 @@ Page({
           res.data.result[a].gmt_create = formatDateTime(res.data.result[a].gmt_create)
         }
         imgarray = res.data.result
+        console.log(imgarray)
         that.setData({
           imgarray: imgarray
         })
@@ -262,5 +292,14 @@ Page({
         console.log(e)
       }
     })
+  },
+  //图片异常处理
+  errImg: function (e) {
+    var errorImgIndex = e.target.dataset.errorimg; //获取循环的下标
+    let Iindex = this.data.imgarray[errorImgIndex].images.length;
+    for (let i = 0; i < Iindex; i++) {
+      var imgObject = "imgarray[" + errorImgIndex + "].images[" + i + "].show_url"; //carlistData为数据源，对象数组
+      com.errorImg(this, e, imgObject);    
+    }
   }
 })
