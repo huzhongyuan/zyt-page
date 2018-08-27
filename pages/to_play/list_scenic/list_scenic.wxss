@@ -201,6 +201,8 @@
 }
 .gone {
   margin-left: 82rpx;
+  display: flex;
+  align-items: center;
 }
 .gone_img {
   width: 28rpx;
@@ -213,6 +215,8 @@
   margin-right: 10rpx;
 }
 .wanted {
+  display: flex;
+  align-items: center;
   margin-left: 60rpx;
 }
 .activity_footer {

@@ -112,6 +112,10 @@ font-family:SourceHanSansCN-Regular;
 color:rgba(0,0,0,1);
 margin-top: 36rpx;
 margin-left: 289rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .one_time{
   width: 22rpx;
@@ -127,6 +131,10 @@ font-family:SourceHanSansCN-Regular;
 color:rgba(51,51,51,1);
 margin-top: 21rpx;
 margin-left: 321rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .one_location{
     width: 22rpx;
@@ -141,6 +149,10 @@ font-family:SourceHanSansCN-Regular;
 color:rgba(51,51,51,1);
 margin-top: 21rpx;
 margin-left: 321rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .one_people{
   float: right;

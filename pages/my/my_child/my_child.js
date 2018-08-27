@@ -29,6 +29,11 @@ Page({
         success: function (res) {
           console.log(res)
           array = res.data.result
+          for (let i in array) {
+            array[i].beginTime = array[i].beginTime.slice(0,16);
+            array[i].endTime = array[i].endTime.slice(0, 16);
+          }
+          console.log(array[0].beginTime);
           that.setData({
             array: array
           })
