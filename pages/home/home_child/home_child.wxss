@@ -6,7 +6,14 @@ page{
 }
 .titleimg{
   width: 750rpx;
-  height: 260rpx;
+  /* height: 260rpx; */
+}
+.imgBox {
+  max-height: 260rpx;
+  overflow-y: hidden;
+}
+image {
+  display: flex;
 }
 .title{
   background: #fff;
@@ -41,20 +48,24 @@ line-height: 80rpx;
 }
 .time{
   width:750rpx;
-height:80rpx;
-background:rgba(255,255,255,1);
+  height:80rpx;
+  background:rgba(255,255,255,1);
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }
 .timeimg{
   width:26rpx;
-height:26rpx;
-margin: 27rpx;
-float: left;
+  height:26rpx;
+  margin-left: 27rpx;
+  display: flex;
 }
 .timetext{
+  display: flex;
   font-size:26rpx;
-font-family:SourceHanSansCN-Regular;
-color:rgba(51,50,50,1);
-line-height: 80rpx;
+  font-family:SourceHanSansCN-Regular;
+  color:rgba(51,50,50,1);
+  margin-left: 20rpx;
 }
 .details{
   padding: 42rpx 25rpx  ;
@@ -132,10 +143,10 @@ float: left;
 }
 .person_people1{
   float: left;
-  margin-left: 227rpx;
+  margin-left: 325rpx;
   width:38rpx;
-height:25rpx;
-margin-top: 20rpx;
+  height:25rpx;
+  margin-top: 20rpx;
 }
 .person_people1_text{
   float: left;

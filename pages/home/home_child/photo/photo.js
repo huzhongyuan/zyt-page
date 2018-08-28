@@ -31,77 +31,106 @@ Page({
    */
   // 添加图片
   addimagssss: function(res) {
-    var classId = this.data.classId
-    var imagesid = this.data.imagesid
-    var that = this
-    var img = this.data.img
-    // console.log(i)
-    wx.chooseImage({
-      count: 9, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        console.log(res)
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths
-        wx.showLoading({
-          title: '上传中',
-          duration: 1000,
-        })
-        // 上传至服务器\
-        var asd = ''
-        for (var t = 0; t < res.tempFilePaths.length;t++){
-          asd = res.tempFilePaths[t]
-          wx.uploadFile({
-            url: app.globalData.url + '/attachment/uploadImages',
-            filePath:asd,
-            name: 'file',
-            formData: {
-              'user': 'test'
-            },
-            success: function (e) {
-              console.log(e)
-              // console.log(e.data)
-              // console.log(e.data.result[0].attachemId)
-              var jsonStr = e.data;
-              jsonStr = jsonStr.replace(" ", "");
-              jsonStr = jsonStr.replace(/\ufeff/g, "");
+    let that = this;
+    let classId = that.data.classId;
+
+    new Promise((resolve, reject) => {
+      // 是否报名
+      wx.request({
+        url: app.globalData.url + '/activity/haveEntered/' + app.globalData.loginId + '/' + classId,
+        success: function (res) {
+          console.log(res);
+          if (res.data.success == false) {
+            wx.showModal({
+              title: '提示',
+              content: res.data.msg,
+              showCancel: false
+            })
+          } else {
+            resolve(1);
+          }
+        },
+        fail: function (e) {
+          console.log(e)
+        }
+      })
+    }).then((r) => {
+      var imagesid = this.data.imagesid
+      var img = this.data.img
+      // console.log(i)
+      wx.chooseImage({
+        count: 9, // 默认9
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res) {
+          console.log(res)
+          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+          var tempFilePaths = res.tempFilePaths
+          wx.showLoading({
+            title: '上传中',
+            duration: 1000,
+          })
+          // 上传至服务器\
+          var asd = ''
+          for (var t = 0; t < res.tempFilePaths.length; t++) {
+            asd = res.tempFilePaths[t]
+            wx.uploadFile({
+              url: app.globalData.url + '/attachment/uploadImages',
+              filePath: asd,
+              name: 'file',
+              formData: {
+                'user': 'test'
+              },
+              success: function (e) {
+                console.log(e)
+                // console.log(e.data)
+                // console.log(e.data.result[0].attachemId)
+                var jsonStr = e.data;
+                jsonStr = jsonStr.replace(" ", "");
+                jsonStr = jsonStr.replace(/\ufeff/g, "");
                 var jj = JSON.parse(jsonStr);
                 e.data = jj;
-              if (e.data.success == true) {
-                imagesid = imagesid + ',' + e.data.result[0].attachemId;
-                console.log(imagesid);
-                that.setData({
-                  imagesid: imagesid,
-                })
-                img = res.tempFilePaths[0]
-                // console.log(img[i])
-                that.setData({
-                  img: img,
-                })
-                setTimeout(function () {
-                  that.asdaasda()
-                }, 1000);
-              } else {
-                wx.hideLoading();
+                if (e.data.success == true) {
+                  imagesid = imagesid + ',' + e.data.result[0].attachemId;
+                  console.log(imagesid);
+                  that.setData({
+                    imagesid: imagesid,
+                  })
+                  img = res.tempFilePaths[0]
+                  // console.log(img[i])
+                  that.setData({
+                    img: img,
+                  })
+                  setTimeout(function () {
+                    that.asdaasda()
+                  }, 1000);
+                } else {
+                  wx.hideLoading();
+                  console.log(res.data.msg);
+                  wx.showModal({
+                    title: '提示',
+                    content: e.data.msg,
+                    showCancel: false
+                  })
+
+                }
+              },
+              fail: function (res) {
+                console.log(res);
                 console.log(res.data.msg);
-                wx.showModal({
-                  title: '提示',
-                  content: e.data.msg,
-                  showCancel: false
-                })
-                
               }
-            },
-            fail:function(res) {
-              console.log(res);
-              console.log(res.data.msg);
-            }
-          })
+            })
+          }
+
         }
-      
-      }
+      })
     })
+
+
+
+    console.log('upload');
+
+
 
   },
 
@@ -155,7 +184,7 @@ Page({
   },
   onLoad: function (options) {
     var that= this
-    var classId = this.data.classId
+    var classId = this.data.classId;
     classId = options.classId
     this.setData({
       classId: classId

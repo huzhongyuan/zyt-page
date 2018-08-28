@@ -1,6 +1,9 @@
 <!--pages/home/home_child/home_child.wxml-->
 <!-- 图片 -->
-<image class='titleimg' src='{{activity.coverImg}}' mode='aspectFit' binderror="errImg" data-errorimg="{{index}}"></image>
+<view class='imgBox'>
+  <image class='titleimg' src='{{activity.coverImg}}' binderror="errImg" data-errorimg="{{index}}"></image>
+</view>
+
 <!-- 题目 -->
 <view class='title'>
   <view class='title_text'>{{activity.title}}</view>
@@ -81,7 +84,7 @@
 <!-- 活动照片 -->
 <view class='photo ' bindtap='to_photo'>
   <view class='photo_text '>活动照片
-    <view class='uptext '>上传</view>
+    <view class='uptext'>上传</view>
     <image class='upimg ' mode='aspectFill ' src='../../../images/up.png '></image>
   </view>
   <view class='frame '></view>

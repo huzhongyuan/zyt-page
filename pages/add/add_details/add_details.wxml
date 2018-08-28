@@ -1,5 +1,5 @@
 <!--pages/add/add_details/add_details.wxml-->
 <view class='add'>
-  <textarea bindinput="bindTextAreaBlur" maxlength="200" placeholder="{{bindTextAreaBlur}}" auto-height placeholder-style='width: 730rpx;' style="width: 730rpx; font-size:30rpx;  padding-top: 24rpx; margin-left: 14rpx; " />
+  <textarea bindinput="bindTextAreaBlur" maxlength="200" value="{{bindTextAreaBlur}}" auto-height placeholder-style='' style="width:680rpx;font-size:30rpx; padding-top: 12rpx;line-height:36rpx;" />
 </view>
 <button class='complete' bindtap='asdk'>完成</button>

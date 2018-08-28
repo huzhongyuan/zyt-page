@@ -93,6 +93,8 @@ margin-right: 24rpx;
 }
 
 .one{
+  display: flex;
+  flex-direction: row;
   margin-top: 2rpx;
   width: 750rpx;
   height: 230rpx;
@@ -102,7 +104,6 @@ margin-right: 24rpx;
 .one_img{
   width:200rpx;
 height:150rpx;
-float: left;
 margin-left: 20rpx;
 margin-top: 37rpx;
 }
@@ -111,7 +112,7 @@ margin-top: 37rpx;
 font-family:SourceHanSansCN-Regular;
 color:rgba(0,0,0,1);
 margin-top: 36rpx;
-margin-left: 289rpx;
+/* margin-left: 289rpx; */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -120,56 +121,73 @@ margin-left: 289rpx;
 .one_time{
   width: 22rpx;
   height: 22rpx;
-  float: left;
-  margin-left: 67rpx;
-  margin-top: 27rpx;
-
+  /* margin-left: 67rpx;
+  margin-top: 27.5rpx; */
 }
 .one_time_text{
     font-size:22rpx;
 font-family:SourceHanSansCN-Regular;
 color:rgba(51,51,51,1);
-margin-top: 21rpx;
-margin-left: 321rpx;
+/* margin-top: 21rpx; */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+  margin-left: 17rpx;
 }
 .one_location{
     width: 22rpx;
   height: 22rpx;
-  float: left;
-  margin-left: 67rpx;
-  margin-top: 27rpx;
+  /* margin-top: 25.5rpx; */
 }
 .one_location_text{
       font-size:22rpx;
 font-family:SourceHanSansCN-Regular;
 color:rgba(51,51,51,1);
-margin-top: 21rpx;
-margin-left: 321rpx;
+/* margin-top: 21rpx; */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+  margin-left: 17rpx;
 }
 .one_people{
-  float: right;
-  margin-right: 21rpx;
+  /* margin-right: 21rpx; */
   font-size:22rpx;
 font-family:SourceHanSansCN-Regular;
 color:rgba(51,51,51,1);
+margin-top: 21rpx;
+display: flex;
+justify-content: flex-end;
 }
 
-
+.messageBox {
+  display: flex;
+  flex-direction: column;
+  margin-left: 59rpx;
+  width: 431rpx;
+  /* margin-top: 49rpx; */
+}
+.timeBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 27rpx;
+}
+.placeBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 21rpx;
+}
 .c_class{
   display: flex;
 /* flex-wrap: wrap; */
   justify-content: flex-start;
   background: #fff;
-  /* margin-top: 5rpx; */
-margin-top: 30rpx;
+  margin-top: 10rpx;
+height:80rpx;
+align-items: center;
  overflow: hidden;
  white-space: nowrap;
 }
@@ -205,6 +223,6 @@ margin-bottom: 10rpx;
 .onone{
   line-height: 180rpx;
   text-align: center;
-  color:rgba(77,77,77,1);
+  color:#cccccc;
   font-size: 30rpx;
 }

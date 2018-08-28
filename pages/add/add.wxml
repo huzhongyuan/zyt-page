@@ -92,6 +92,6 @@
   </view>
   <view class='addframe'></view>
 
-<button class='complete' bindtap='asdk'>立即上传</button>
+<button class='complete' bindtap='asdk'>立即发布</button>
 
 

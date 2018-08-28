@@ -11,5 +11,5 @@
 </view>
 
 <view class='ssdad'>
-<image class='addimgs' bindtap='addimagssss' src='../../../../images/add2.png'></image>
+<image class='addimgs' catchtap='addimagssss' src='../../../../images/add2.png'></image>
 </view>

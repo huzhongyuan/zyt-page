@@ -35,20 +35,38 @@ Page({
         array:[],
         classkind: [{ id: '', name: "全部", class: 'redd', class2: 'c_reeed', }],
         news:'',
+        isbottom: false,
   },
+  onLaunch: function (options) {
 
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.showLoading({
+      title: '加载中',
+    })
   },
-
+  // showLoading() {
+  //   this.setData({
+  //     $loading: {
+  //       isShow: true
+  //     }
+  //   })
+  //   setTimeout(() => {
+  //     this.setData({
+  //       $loading: {
+  //         isShow: false
+  //       }
+  //     })
+  //   }, 1000)}
+  //   ,
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
@@ -59,6 +77,11 @@ Page({
     var activity = this.data.activity
     var null1 = this.data.null1
     var that = this
+    if(!that.data.isbottom) {
+      wx.showLoading({
+        title: '加载中',
+      })
+    }
     wx.request({
       url: app.globalData.url + '/activity/getActivityList',
       data: {
@@ -69,10 +92,12 @@ Page({
       },
       success: function (res) {
         // console.log(res)
-        wx.stopPullDownRefresh()
         if (res.data.result == '') {
           null1 = 'block';
           pageNo--;//下拉加载的时候没有数据了页码需要减一
+          that.setData({
+            isbottom: true
+          })
         } else {
           null1 = 'none'
         }
@@ -88,13 +113,18 @@ Page({
           null1:null1
 
         })
+        wx.hideLoading()
       },
       fail: function (e) {
-        console.log(e)
+        console.log(e);
+        wx.hideLoading()
       }
     })
   },
   onShow: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
     pageNo = 1
     var that = this
     var array = that.data.array
@@ -129,6 +159,7 @@ data:{
   status:1
 },
       success: function (res) {
+        console.log(res);
         array = res.data.result
         that.setData({
           array: array
@@ -193,6 +224,9 @@ data:{
     })
   },
   choisekind:function(e){
+    wx.showLoading({
+      title: '加载中',
+    })
     pageNo = 1
     // console.log(e.currentTarget.id)
     var that = this
@@ -234,6 +268,9 @@ data:{
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
     var activity = this.data.activity
     var that = this    
     activity = []    

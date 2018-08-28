@@ -143,16 +143,23 @@
   -webkit-box-orient: vertical; 
 }
 .activity_cion {
+  display: flex;
   width: 20rpx;
   height: 26rpx;
   margin-right: 17rpx;
 }
 
 .arr_box {
+  height: 30rpx;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
-.arr_box text {
+.arr_box view {
+  display: flex;
+  align-items: center;
+  line-height: 30rpx;
   color: #333333;
   font-size: 24rpx;
   height: 30rpx;
@@ -185,6 +192,8 @@
 }
 .gone {
   margin-left: 82rpx;
+  display: flex;
+  align-items: center;
 }
 .gone_img {
   width: 28rpx;
@@ -198,6 +207,8 @@
 }
 .wanted {
   margin-left: 60rpx;
+  display: flex;
+  align-items: center;
 }
 .activity_footer {
   font-size: 28rpx;
@@ -223,7 +234,7 @@
 .bottomer {
   display: flex;
   justify-content: center;
-  color: #333333;
+  color: #cccccc;
   font-size: 30rpx;
   height: 180rpx;
   align-items: center;

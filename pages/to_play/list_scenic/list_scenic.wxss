@@ -230,7 +230,7 @@
 .bottomer {
   display: flex;
   justify-content: center;
-  color: #333333;
+  color: #cccccc;
   font-size: 30rpx;
   height: 80rpx;
   align-items: center;

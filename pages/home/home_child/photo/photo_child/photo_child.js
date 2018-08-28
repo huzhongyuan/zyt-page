@@ -34,91 +34,114 @@ Page({
   addimagssss: function (res) {
     var classId = this.data.classId
     var that = this
-    var img = this.data.img
+    var img = this.data.img;
     // console.log(i)
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        console.log(res)
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths
-        // 上传至服务器
-        wx.uploadFile({
-          url: app.globalData.url + '/attachment/uploadImages',
-          filePath: res.tempFilePaths[0],
-          name: 'file',
-          formData: {
-            'user': 'test'
-          },
-          success: function (e) {
-            console.log(e)
-            var jsonStr = e.data;
+    new Promise((resolve, reject) => {
+      // 是否报名
+      wx.request({
+        url: app.globalData.url + '/activity/haveEntered/' + app.globalData.loginId + '/' + classId,
+        success: function (res) {
+          console.log(res);
+          if (res.data.success == false) {
+            wx.showModal({
+              title: '提示',
+              content: res.data.msg,
+              showCancel: false
+            })
+          } else {
+            resolve(1);
+          }
+        },
+        fail: function (e) {
+          console.log(e)
+        }
+      })
+    }).then((r) => {
+      wx.chooseImage({
+        count: 1, // 默认9
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res) {
+          console.log(res)
+          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+          var tempFilePaths = res.tempFilePaths
+          // 上传至服务器
+          wx.uploadFile({
+            url: app.globalData.url + '/attachment/uploadImages',
+            filePath: res.tempFilePaths[0],
+            name: 'file',
+            formData: {
+              'user': 'test'
+            },
+            success: function (e) {
+              console.log(e)
+              var jsonStr = e.data;
               jsonStr = jsonStr.replace(/\ufeff/g, "");
               var jj = JSON.parse(jsonStr);
               e.data = jj;
               console.log(e)
-            if (e.data.success == true) {
-              console.log('sucess');
-              console.log(e.data.result[0].attachemId);
-              e.data.result[0].attachemId = parseInt(e.data.result[0].attachemId);
-              console.log(typeof (e.data.result[0].attachemId));
-              wx.request({
-                url: app.globalData.url + '/attachment/saveActivityImages',
-                data: {
-                  ids: e.data.result[0].attachemId,
-                  activityId: classId,
-                  loginId: app.globalData.loginId
-                },
-                success: function (res) {
-                  if (res.data.status == 404) {
+              if (e.data.success == true) {
+                console.log('sucess');
+                console.log(e.data.result[0].attachemId);
+                e.data.result[0].attachemId = parseInt(e.data.result[0].attachemId);
+                console.log(typeof (e.data.result[0].attachemId));
+                wx.request({
+                  url: app.globalData.url + '/attachment/saveActivityImages',
+                  data: {
+                    ids: e.data.result[0].attachemId,
+                    activityId: classId,
+                    loginId: app.globalData.loginId
+                  },
+                  success: function (res) {
+                    if (res.data.status == 404) {
+                      wx.showModal({
+                        title: '提示',
+                        content: res.data.message,
+                        showCancel: false,
+                      })
+                    } else {
+                      img = res.tempFilePaths[0]
+                      // console.log(img[i])
+                      that.setData({
+                        img: img
+                      })
+                      wx.showLoading({
+                        title: '上传成功',
+                        duration: 1000,
+                      })
+                    }
+                  },
+                  fail: function (res) {
+                    console.log(res);
                     wx.showModal({
                       title: '提示',
-                      content: res.data.message,
+                      content: e.data.msg,
                       showCancel: false,
                     })
-                  }else {
-                    img = res.tempFilePaths[0]
-                    // console.log(img[i])
-                    that.setData({
-                      img: img
-                    })
-                    wx.showLoading({
-                      title: '上传成功',
-                      duration: 1000,
-                    })
                   }
-                },
-                fail: function (res) {
-                  console.log(res);
-                  wx.showModal({
-                    title: '提示',
-                    content: e.data.msg,
-                    showCancel: false,
-                  })
-                }
-              })
-            } else {
+                })
+              } else {
+                wx.showModal({
+                  title: '提示',
+                  content: e.data.msg,
+                  showCancel: false,
+                })
+              }
+
+            },
+            fail: function (e) {
               wx.showModal({
                 title: '提示',
                 content: e.data.msg,
                 showCancel: false,
               })
             }
+          })
 
-          },
-          fail: function(e) {
-            wx.showModal({
-              title: '提示',
-              content: e.data.msg,
-              showCancel: false,
-            })
-          }
-        })
-
-      }
+        }
+      })
     })
+
 
   },
   onLoad: function (options) {

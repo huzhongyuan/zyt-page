@@ -5,12 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-
     bindTextAreaBlur: '',
-
   },
 
   bindTextAreaBlur: function (e) {
+    console.log(e.detail.value);
     var bindTextAreaBlur = this.data.bindTextAreaBlur
     this.setData({
       bindTextAreaBlur: e.detail.value

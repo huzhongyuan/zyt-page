@@ -6,6 +6,12 @@ let name = '推荐';
 
 //加载活动数据
 let loadmore = (that) => {
+  if (!that.data.isbottom) {
+    wx.showLoading({
+      title: '加载中',
+    })
+  }
+
   wx.request({
     url: app.globalData.url + '/place/getPlaceListByCondition',
     data: {
@@ -18,12 +24,16 @@ let loadmore = (that) => {
     success: function (e) {
       if(e.data.result.length < 5) {
         that.setData({
-          bottomer: 'flex'
+          bottomer: 'flex',
+            isbottom: true
         })
       }
 
-      if(e.data.result.length == 0 )
-        pageNo --;
+      if(e.data.result.length == 0 ){
+        pageNo--;
+
+      }
+
 
       let activity_list = that.data.activity_list;
       activity_list.push(...e.data.result);
@@ -31,6 +41,7 @@ let loadmore = (that) => {
         activity_list: activity_list
       });
       pageNo++;
+      wx.hideLoading();
     }
   })
 }
@@ -42,14 +53,18 @@ Page({
   data: {
     bottom: '0rpx',
     bottomer: 'none',
-    activity_list: []
+    activity_list: [],
+    isbottom: false
   //搜索框文本数据
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {  
+  onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+    })
     let that = this;
     pageNo = 1;
     //得到地方分类
@@ -84,8 +99,16 @@ Page({
     console.log()
     loadmore(this);
   },
+  onShow:function() {
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
+  },
   //下拉刷新
   onPullDownRefresh:function(e){
+        wx.showLoading({
+      title: '加载中',
+    })
     pageNo = 1;
     this.setData({
       activity_list: [],
@@ -154,7 +177,8 @@ Page({
     let that = this;
     that.setData({
       bottomer: 'none',
-      activity_list: []  
+      activity_list: [],
+      isbottom:false
     })
     let index = parseInt(e.currentTarget.dataset.index);
     name = that.data.content_nav[index].name;

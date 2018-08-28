@@ -53,7 +53,7 @@
         <view class='place_detail'> {{ item.description }}</view>
         <view class='arr_box'>
           <image class='activity_cion' src='/images/location.png'></image>
-          <text> {{ item.address }}</text>
+          <view>{{ item.address }}</view>
         </view>
       </view>
     </view>
@@ -68,7 +68,7 @@
               <text>我想去</text>
             </view>
             <view class='play_with' bindtap='play_with' data-index=' {{ index }}'>
-              相伴去玩
+              约伴去玩
             </view>
     </view>
       <view class='fatline'></view>

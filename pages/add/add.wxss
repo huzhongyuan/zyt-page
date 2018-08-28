@@ -118,6 +118,7 @@ button[class="picker_btn"]::after {
   border-radius: 50rpx;
   float: left;
   margin-top: 34rpx;
+    margin-bottom: 34rpx;
   margin-left: 19rpx;
   font-size:32rpx;
   font-family:SourceHanSansCN-Regular;
