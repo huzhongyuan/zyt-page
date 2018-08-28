@@ -6,3 +6,8 @@
   <view class='Answer'>{{item.answer}}</view>
   <view class='Prompt ' style='display:{{item.display}}'>1</view>
 </view>
+
+<view class='dataNone' wx:if="{{ array3.length == 0 }}">
+    此页无数据
+</view>
+
