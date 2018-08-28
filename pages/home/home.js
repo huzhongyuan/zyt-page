@@ -224,6 +224,9 @@ data:{
     })
   },
   choisekind:function(e){
+    this.setData({
+      isbottom:false
+    })
     wx.showLoading({
       title: '加载中',
     })
