@@ -127,9 +127,9 @@
 
 
 .activity_photo {
-  width: 200rpx;
-  height: 200rpx;
-  margin-right: 53rpx;
+  width:330rpx;
+  height:210rpx;
+  margin-right: 30rpx;
   margin-top: 31rpx;
 }
 .arr_detail {
@@ -141,7 +141,7 @@
   font-size: 32rpx;
   margin-bottom: 20rpx;
   height: 40rpx;
-  width: 442rpx;
+  width: 314rpx;
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
@@ -149,7 +149,7 @@
 .place_detail {
   color: #333333;
   font-size: 26rpx;
-  margin-bottom: 50rpx;
+  margin-bottom: 30rpx;
   height: 70rpx;
   overflow: hidden;
    text-overflow: ellipsis;
@@ -158,40 +158,46 @@
   -webkit-box-orient: vertical; 
 }
 .activity_cion {
+  display: flex;
   width: 20rpx;
   height: 26rpx;
-  margin-right: 17rpx;
+  margin-right: 7rpx;
 }
 
 .arr_box {
+  height: 30rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
 }
 .arr_box text {
+  display: flex;
+  align-items: center;
+  line-height: 30rpx;
   color: #333333;
   font-size: 24rpx;
   height: 30rpx;
-  width: 405rpx;
+  width: 311rpx;
     overflow: hidden;
    text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical; 
 }
-
 .activity_list {
   width: 750rpx;
   height: 260rpx;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  margin-bottom: 20rpx;
+  padding: 0 24rpx;
 }
 
 .place_detail {
-  width: 442rpx;
+  width: 314rpx;
   height: 70rpx;
 }
-
 .activity_footer{
    width: 750rpx;
    height: 80rpx;
@@ -200,7 +206,7 @@
    align-items: center;
 }
 .gone {
-  margin-left: 82rpx;
+  margin-left: 24rpx;
   display: flex;
   align-items: center;
 }
@@ -215,9 +221,9 @@
   margin-right: 10rpx;
 }
 .wanted {
+  margin-left: 90rpx;
   display: flex;
   align-items: center;
-  margin-left: 60rpx;
 }
 .activity_footer {
   font-size: 28rpx;
@@ -225,7 +231,7 @@
 }
 .play_with {
   color: #F1793E;
-  margin-left: 220rpx;
+  margin-left: 247rpx;
 }
 .bottomer {
   display: flex;

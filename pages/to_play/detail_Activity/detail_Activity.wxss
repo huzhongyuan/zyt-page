@@ -1,11 +1,11 @@
 /* pages/to_play/detail_Activity/detail_Activity.wxss */
 .photo {
   width: 750rpx;
-  height: 260rpx;
+  /* height: 480rpx; */
 }
 .photo image{
   width: 750rpx;
-  height: 260rpx;
+  height: 480rpx;
 }
 .header {
   display: flex;
@@ -31,34 +31,46 @@
   background-color: #cccccc;
 }
 .place {
-  width: 750rpx;
-    margin-bottom: 27rpx;
+  width:750rpx;
+  /* height:80rpx; */
+  /* display: flex;
+  align-items: center; */
 }
 .place image {
-  margin-top: 29rpx;
-  width: 24rpx;
-  height: 31rpx;
-  margin-left: 26rpx;
+width:24rpx;
+height:31rpx;
+  margin-left: 25rpx;
+  margin-top: 25rpx;
 }
 .addr {
-  color: #333232;
-  font-size: 26rpx;
-  margin-left: 22rpx;
+  margin-top: 24rpx;
+  font-size:26rpx;
+  font-family:SourceHanSansCN-Regular;
+  font-weight:400;
+  /* line-height: 25rpx; */
+  /* height:25rpx; */
+  color:rgba(51,50,50,1);
+  opacity:0.7;
+  margin-left: 10rpx;
   display: inline;
 }
 
 .introdution {
-  width: 750rpx;
+  width: 699rpx;
   margin-top: 19rpx;
   margin-bottom: 80rpx;
   display: flex;
-  justify-content: center;
+  padding: 0rpx 51rpx 0rpx 25rpx;
+  /* justify-content: center; */
 }
 .introdution text {
-  width: 674rpx;
-  color: #333232;
-  font-size: 26rpx;
-  overflow : hidden;
+  /* width: 674rpx; */
+font-size:26rpx;
+font-family:SourceHanSansCN-Regular;
+font-weight:400;
+color:rgba(51,50,50,1);
+line-height:36rpx;
+opacity:0.7;
   /* text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;

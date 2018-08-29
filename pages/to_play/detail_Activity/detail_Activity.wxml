@@ -14,8 +14,6 @@
   <text class='addr'>{{ detail.address }}</text>
 </view>
 
-<view class='line'></view>
-
 <view class='introdution'>
   <text>{{ detail.description }}</text>
 </view>

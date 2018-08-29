@@ -145,8 +145,8 @@ button[class="picker_btn"]::after {
     height: 260rpx;
     width: 750rpx;
     overflow: hidden;
-      padding: 0rpx;
-  margin: 0rpx;
+    padding: 0rpx;
+    margin: 0rpx;
 }
 .bc_img{
     /* width:750rpx;
