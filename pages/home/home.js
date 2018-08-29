@@ -91,7 +91,7 @@ Page({
         pageSize: 5,
       },
       success: function (res) {
-        // console.log(res)
+         console.log(res);
         if (res.data.result == '') {
           null1 = 'block';
           pageNo--;//下拉加载的时候没有数据了页码需要减一

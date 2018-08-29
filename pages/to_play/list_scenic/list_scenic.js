@@ -18,7 +18,8 @@ let loadmore = (that) => {
       pageSize: 5
     },
     success: function (json) {
-      // console.log(json)
+      console.log(json)
+      json = common.noneImg(that, json);
       if (json.data.result.length < 5) {
         that.setData({
           bottomer: 'flex'

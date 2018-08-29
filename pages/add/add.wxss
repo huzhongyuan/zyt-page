@@ -127,19 +127,51 @@ button[class="picker_btn"]::after {
 }
 
 .bcimg{
-  width:750rpx;
-height:260rpx;
+  /* width:750rpx;
+  max-height:260rpx;
+  display: flex; */
+  height: 260rpx;
+  width: 750rpx;
+  position: relative;
+  padding: 0rpx;
+  margin: 0rpx;
+}
+.bcBox {
+    /* position: absolute;
+    overflow: hidden;
+    max-height: 260rpx;
+    display: flex;
+    top: 0rpx; */
+    height: 260rpx;
+    width: 750rpx;
+    overflow: hidden;
+      padding: 0rpx;
+  margin: 0rpx;
 }
 .bc_img{
-    width:750rpx;
-height:260rpx;
-position: absolute;
+    /* width:750rpx;
+    display: flex; */
+    /* min-height: 260rpx; */
+    /* height: 260rpx; */
+    /* height: 260rpx; */
+    padding: 0rpx;
+    margin: 0rpx;
+    display: inline;
+}
+.image {
+  display: flex;
 }
 .add_img{
-  position: relative;
+  /* position: relative;
   width:120rpx;
-height:120rpx;
-margin: 70rpx 315rpx;
+  height:120rpx;
+  margin: 70rpx 315rpx; */
+  position: absolute;
+    width:120rpx;
+  height:120rpx;
+  top: 0rpx;
+  margin: 70rpx 315rpx;
+    padding: 0rpx;
 }
 .asdadsa{
   width: 750rpx;

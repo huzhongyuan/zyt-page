@@ -35,7 +35,7 @@
   <view class='activity' wx:for="{{ activity_list }}" wx:key="*this"  >
     <view class='thinline'></view>
     <view  bindtap='to_detail'  data-index=' {{ index }}' id="{{ item.id }}" class='activity_list'>
-      <image class='activity_photo' src='{{item.show_url}}'  binderror="errImg1" data-errorimg="{{index}}"></image>
+      <image class='activity_photo' src='{{item.show_url}}'  binderror="errImg" data-errorimg="{{index}}"></image>
       <view class='arr_detail'>
         <view class='activity_title'> {{ item.address }}</view>
         <view class='place_detail'> {{ item.description }}</view>
@@ -56,7 +56,7 @@
               <text >我想去</text>
             </view>
             <view class='play_with' bindtap='play_with' data-index=' {{ index }}'>
-              相伴去玩
+              约伴去玩
             </view>
     </view>
       <view class='fatline'></view>

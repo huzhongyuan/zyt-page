@@ -80,6 +80,7 @@ Page({
   },
   //背景图片加载异常处理
   errImg: function (e) {
+    console.log('imgerror');
     var imgObject = "detail.show_url" //carlistData为数据源，对象数组
     common.errorImg(this, e, imgObject);
   },

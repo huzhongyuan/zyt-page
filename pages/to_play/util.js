@@ -191,6 +191,13 @@ const errorImg = (that, e, imgObject) => {
   errorImg[imgObject] = "http://manage.watx365.com/img/zwimg.png" //我们构建一个对象
   that.setData(errorImg) //修改数据源对应的数据
 };
+//图片未传值处理
+const noneImg = (that,e) => {
+  for (let i in e.data.result) {
+    if (!e.data.result[i].show_url) e.data.result[i].show_url = false;
+  }
+  return e;
+}
 
  module.exports = {
   test: test, //测试
@@ -204,4 +211,5 @@ const errorImg = (that, e, imgObject) => {
   wanttoplay: wanttoplay,//我想去玩
   playwith: playwith,//约伴去玩
   errorImg: errorImg,//图片异常处理
+   noneImg: noneImg,//图片未传值处理
 }

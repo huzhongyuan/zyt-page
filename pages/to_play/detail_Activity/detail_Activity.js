@@ -24,7 +24,8 @@ Page({
     wx.request({
       url: app.globalData.url + '/place/getPlaceDetail/'+ (options.id || 7),
       success: function (json) {
-        //console.log(json);
+        console.log(json);
+        json = common.noneImg(that, json);
         that.setData({
           detail: json.data.result[0]
         })
@@ -35,7 +36,7 @@ Page({
     wx.request({
       url: app.globalData.url + '/placeProject/getProjectByPlaceId/6',
       success: function(e) {
-        //console.log(e.data.result);
+        console.log(e.data.result);
         let item_list = [];
         item_list.push(...e.data.result);
         // console.log(item_list);

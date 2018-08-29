@@ -1,7 +1,9 @@
 <!--pages/add/add.wxml-->
 <view class='bcimg'>
-  <image class='bc_img' src='{{img}}' mode='aspectFit'></image>
-<image class='add_img' src='../../images/addimg.png' bindtap='add_img'></image>
+  <view class='bcBox'>
+    <image class='bc_img' src='{{img}}'></image>
+  </view>
+  <image class='add_img' src='../../images/addimg.png' bindtap='add_img'></image>
 </view>
 
   <view class="section">

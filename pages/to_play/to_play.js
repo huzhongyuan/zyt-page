@@ -22,6 +22,8 @@ let loadmore = (that) => {
       input_text: ' '
     },
     success: function (e) {
+      e = common.noneImg(that,e)
+      console.log(e.data.result);
       if(e.data.result.length < 5) {
         that.setData({
           bottomer: 'flex',

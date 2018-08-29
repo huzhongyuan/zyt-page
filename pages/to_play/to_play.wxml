@@ -47,7 +47,7 @@
   <view class='activity'  wx:for="{{ activity_list }}" wx:key="unique" >
     <view class='thinline'></view>
     <view class='activity_list'  bindtap='to_detail'  data-index=' {{ index }}'>
-      <image class='activity_photo' src='{{item.show_url}}' binderror="errImg" data-errorimg="{{index}}"></image>
+      <image class='activity_photo' src='{{ item.show_url }}' binderror="errImg" data-errorimg="{{index}}"></image>
       <view class='arr_detail'>
         <view class='activity_title'> {{ item.name }}</view>
         <view class='place_detail'> {{ item.description }}</view>
