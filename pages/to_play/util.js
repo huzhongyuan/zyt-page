@@ -166,7 +166,7 @@ const wanttoplay = (that, placeId) => {
 };
 
 //约伴去玩
-const playwith = (that, rId, rType, name, address) => {
+const playwith = (that, rId, rType, name, address, imgUrl) => {
   wx.request({
     url: app.globalData.url + '/mapAddress/getMapAddress',
     data: {
@@ -179,7 +179,7 @@ const playwith = (that, rId, rType, name, address) => {
       let longitude = parseFloat(e.data.result.lng);
       console.log('latitude=' + latitude + ',longitude' + longitude);
       wx.navigateTo({
-        url: '/pages/add/add?name=' + name + '&address=' + address + '&latitude=' + latitude + '&longitude=' + longitude,
+        url: '/pages/add/add?name=' + name + '&address=' + address + '&latitude=' + latitude + '&longitude=' + longitude + "&imgUrl=" + imgUrl,
       })
     }
   })

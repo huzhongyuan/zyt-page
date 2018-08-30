@@ -161,7 +161,8 @@ Page({
     let rId = this.data.activity_list[index].id;
     let name = this.data.activity_list[index].name;
     let address = this.data.activity_list[index].address;
-    common.playwith(this, rId, 2, name, address);
+    let imgUrl = this.data.activity_list[index].show_url;
+    common.playwith(this, rId, 2, name, address,imgUrl);
   },
   //转到某一热门景点
   to_hot_item: function(e) {

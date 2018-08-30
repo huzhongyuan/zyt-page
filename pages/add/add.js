@@ -20,7 +20,8 @@ Page({
     classkindd:0,
     details:{'name':'填写详情','btn':'to_details'},
     imagesid:'',
-    open: ''
+    open: '',
+    isUploadFile:true,//是否上传要上传图片
   },
   to_details:function(){
       wx.navigateTo({
@@ -274,31 +275,29 @@ Page({
  
         img = res.tempFilePaths[0]
         // console.log(img[i])
-that.setData({
-  img:img
-})
+        that.setData({
+          img:img
+        })
       }
     })
 
   },
   asdk:function(){
+    var that = this;
     // 上传至服务器
-    var imagesid = this.data.imagesid
+    var imagesid = that.data.imagesid;
 
-    
-    var userinfo = this.data.userinfo
-    var inputValue = this.data.inputValue
-    var address = this.data.address
-    var img = this.data.img
-    var details = this.data.details
-    var Inputnumber = this.data.Inputnumber 
-    var payMethodd = this.data.payMethodd
-    var that = this
-    var adsasdasdas = ''
-    var address = that.data.address
-    var classkind = this.data.classkind
-    var classkindd = this.data.classkindd
-    var classid = this.data.classid
+    var isUploadFile = that.data.isUploadFile;
+    var userinfo = that.data.userinfo;
+    var inputValue = that.data.inputValue;
+    var img = that.data.img;
+    var details = that.data.details;
+    var Inputnumber = that.data.Inputnumber;
+    var payMethodd = that.data.payMethodd;
+    var address = that.data.address;
+    var classkind = that.data.classkind;
+    var classkindd = that.data.classkindd;
+    var classid = that.data.classid;
     if (inputValue == '') {
       wx.showToast({
         title: '标题不能为空',
@@ -333,99 +332,111 @@ that.setData({
         title: '未选择活动类别',
         duration: 2000
       })
-    }
-     else {
-    wx.showLoading({
-      title: '上传中',
-    })
-      wx.uploadFile({
-        url: app.globalData.url + '/attachment/uploadImages',
-        filePath: img,
-        name: 'file',
-        formData: {
-          'user': 'test'
-        },
-        success: function (res) {
-          res.data = res.data.replace(/\ufeff/g, "");
-          res.data = JSON.parse(res.data);
-          console.log(typeof (res.data));
-          console.log(res.data.success);
-          if (res.data.success == true){
-            console.log(111111111111111111111111111111111);
+    } else {
+      wx.showLoading({
+        title: '上传中',
+      })
+
+      if (isUploadFile){
+        wx.uploadFile({
+          url: app.globalData.url + '/attachment/uploadImages',
+          filePath: img,
+          name: 'file',
+          formData: {
+            'user': 'test'
+          },
+          success: function (res) {
+            res.data = res.data.replace(/\ufeff/g, "");
+            res.data = JSON.parse(res.data);
+            console.log(typeof (res.data));
+            console.log(res.data.success);
+            if (res.data.success == true) {
+              console.log(111111111111111111111111111111111);
               imagesid = res.data.result[0].attachemId
+              that.createActivity();
+            } else {
+              wx.hideLoading()
+              console.log(res)
+              wx.showModal({
+                title: '提示',
+                content: res.data.msg,
+                showCancel: false,
+              })
 
-              //上传活动
-              wx.getStorage({
-                key: 'details',
-                success: function (res) {
-                  adsasdasdas = res.data.text
-                  var serviceRecord = {}
-                  serviceRecord.beginTime = that.data.date + ' ' + that.data.time + ':00'
-                  serviceRecord.endTime = that.data.date2 + ' ' + that.data.time2 + ':00'
-                  serviceRecord.maleLimit = that.data.Inputnumber
-                  serviceRecord.title = that.data.inputValue
-                  serviceRecord.place = that.data.address.address
-                  serviceRecord.charge = that.data.payMethod[payMethodd]
-                  serviceRecord.details = adsasdasdas
-                  serviceRecord.imgId = imagesid
-                  serviceRecord.classId = classid[classkindd]
-                  wx.request({
-                    url: app.globalData.url + '/activity/createActivity/' + app.globalData.loginId + '/' + address.latitude + '/' + address.longitude,
-                    data: serviceRecord,
-                    method: "POST",
-                    success: function (res) {
-                      if(res.data.success == true) {
-                        console.log(res)
-                        wx.hideLoading()
-                        wx.showModal({
-                          title: '提示',
-                          content: res.data.msg,
-                          showCancel: false,
-                          success: function () {
-                            wx.navigateBack({ changed: true });//返回上一页
-                          }
-                        })
-                      } else {
-                        wx.hideLoading()
-                        wx.showModal({
-                          title: '提示',
-                          content: res.data.msg,
-                          showCancel: false,
-                        })
-                      }
+            }
 
-                    },
-                    fail: function (res) {
-                      wx.hideLoading();
-                      wx.showModal({
-                        title: '提示',
-                        content: res.data.msg,
-                        showCancel: false,
-                      })
-                      console.log(res)
-                    }
-                  })
+          }
+        })
+        
+      }else{
+        that.uploadImgByUrl(img);
+      }
+    }
+  },
+  createActivity:function(){
+    var that = this;
+    var adsasdasdas = '';
+    var classkind = that.data.classkind;
+    var classkindd = that.data.classkindd;
+    var classid = that.data.classid;
+    var payMethodd = that.data.payMethodd;
+    var address = that.data.address;
+    wx.getStorage({
+      key: 'details',
+      success: function (res) {
+        adsasdasdas = res.data.text
+        var serviceRecord = {}
+        serviceRecord.beginTime = that.data.date + ' ' + that.data.time + ':00'
+        serviceRecord.endTime = that.data.date2 + ' ' + that.data.time2 + ':00'
+        serviceRecord.maleLimit = that.data.Inputnumber
+        serviceRecord.title = that.data.inputValue
+        serviceRecord.place = that.data.address.address
+        serviceRecord.charge = that.data.payMethod[payMethodd]
+        serviceRecord.details = adsasdasdas
+        serviceRecord.imgId = that.data.imagesid
+        serviceRecord.classId = classid[classkindd]
+        wx.request({
+          url: app.globalData.url + '/activity/createActivity/' + app.globalData.loginId + '/' + address.latitude + '/' + address.longitude,
+          data: serviceRecord,
+          method: "POST",
+          success: function (res) {
+            if (res.data.success == true) {
+              console.log(res)
+              wx.hideLoading()
+              wx.showModal({
+                title: '提示',
+                content: res.data.msg,
+                showCancel: false,
+                success: function () {
+                  wx.navigateBack({ changed: true });//返回上一页
                 }
               })
-          } else{
-            wx.hideLoading()
-            console.log(res)
+            } else {
+              wx.hideLoading()
+              wx.showModal({
+                title: '提示',
+                content: res.data.msg,
+                showCancel: false,
+              })
+            }
+
+          },
+          fail: function (res) {
+            wx.hideLoading();
             wx.showModal({
               title: '提示',
               content: res.data.msg,
-              showCancel:false,
+              showCancel: false,
             })
-         
+            console.log(res)
           }
-       
-        }
-      })
+        })
+      }
+    })
 
-   
-    }
   },
   onLoad:function(options){
-    console.log('1111111111' + options.name + options.address + options.latitude + options.longitude);
+    console.log('1111111111' + options.name + options.address + options.latitude + options.longitude + options.imgUrl);
     if(options.name) {
       let address = {};
       address.name = options.name;
@@ -433,7 +444,9 @@ that.setData({
       address.latitude = options.latitude;
       address.longitude = options.longitude;
       this.setData({
-        address: address
+        address: address,
+        img: options.imgUrl,
+        isUploadFile:false
       })
     }
     var date = this.data.date
@@ -506,6 +519,48 @@ that.setData({
         })
       },
       fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  /**
+   * 根据网络地址上传图片
+   */
+  uploadImgByUrl:function(imgUrl){
+    var that = this;
+    wx.request({
+      url: app.globalData.url + '/attachment/uploadImageUrl?url='+imgUrl,
+      data: {},
+      method: "GET",
+      success: function (res) {
+        console.log(res.data);
+        //console.log(typeof (res.data));
+       // res.data = res.data.replace(/\ufeff/g, "");
+        //res.data = JSON.parse(res.data);
+        console.log(res.data.success);
+        if (res.data.success == true) {
+          console.log(111111111111111 +"uploadImgByUrl"+111111111111111111);
+          that.setData({
+            imagesid: res.data.result.attachemId
+          })
+
+          that.createActivity();
+          
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false,
+          })
+        }
+
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+          showCancel: false,
+        })
         console.log(res)
       }
     })
