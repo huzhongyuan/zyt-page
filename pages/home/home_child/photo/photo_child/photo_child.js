@@ -1,21 +1,6 @@
 // pages/home/home_child/photo/photo.js
 var app = getApp()
 import com from '../../../../../pages/to_play/util.js'
-function formatDateTime(inputTime) {
-  var date = new Date(inputTime);
-  var y = date.getFullYear();
-  var m = date.getMonth() + 1;
-  m = m < 10 ? ('0' + m) : m;
-  var d = date.getDate();
-  d = d < 10 ? ('0' + d) : d;
-  var h = date.getHours();
-  h = h < 10 ? ('0' + h) : h;
-  var minute = date.getMinutes();
-  var second = date.getSeconds();
-  minute = minute < 10 ? ('0' + minute) : minute;
-  second = second < 10 ? ('0' + second) : second;
-  return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
-};
 Page({
 
   /**
@@ -176,7 +161,7 @@ Page({
         console.log('活动图片')
         console.log(res)
         for(var a = 0 ;a<res.data.result.length;a++){
-          res.data.result[a].gmt_create = formatDateTime(res.data.result[a].gmt_create)
+          res.data.result[a].gmt_create = com.formatDateTimeNotReplace(res.data.result[a].gmt_create)
         }
         imgarray = res.data.result
         console.log(imgarray)
@@ -310,6 +295,11 @@ Page({
             }
           }
         }
+          wx.showToast({
+              title: res.data.msg,
+              icon: 'success',
+              duration: 2000
+          })
       },
       fail: function (e) {
         console.log(e)

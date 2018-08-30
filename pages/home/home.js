@@ -2,21 +2,7 @@
 var app = getApp()
 var pageNo = 1
 import com from '../to_play/util.js'
-function formatDateTime(inputTime) {
-  var date = new Date(inputTime);
-  var y = date.getFullYear();
-  var m = date.getMonth() + 1;
-  m = m < 10 ? ('0' + m) : m;
-  var d = date.getDate();
-  d = d < 10 ? ('0' + d) : d;
-  var h = date.getHours();
-  h = h < 10 ? ('0' + h) : h;
-  var minute = date.getMinutes();
-  var second = date.getSeconds();
-  minute = minute < 10 ? ('0' + minute) : minute;
-  second = second < 10 ? ('0' + second) : second;
-  return y + '-' + m + '-' + d ;
-};
+
 var classId = ''
 var pageNo = 1
 Page({
@@ -48,20 +34,6 @@ Page({
       title: '加载中',
     })
   },
-  // showLoading() {
-  //   this.setData({
-  //     $loading: {
-  //       isShow: true
-  //     }
-  //   })
-  //   setTimeout(() => {
-  //     this.setData({
-  //       $loading: {
-  //         isShow: false
-  //       }
-  //     })
-  //   }, 1000)}
-  //   ,
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -74,9 +46,11 @@ Page({
    */
 
   jiaz:function(){
-    var activity = this.data.activity
-    var null1 = this.data.null1
-    var that = this
+      var that = this;
+      var activity = that.data.activity;
+      var activity1 = [];
+      var null1 = that.data.null1;
+
     if(!that.data.isbottom) {
       wx.showLoading({
         title: '加载中',
@@ -101,19 +75,18 @@ Page({
         } else {
           null1 = 'none'
         }
-        for (var t = 0; t < res.data.result.length; t++) {
-          var y = activity.length
-          activity[y] = res.data.result[t]
-          activity[y].beginTime = formatDateTime(res.data.result[t].beginTime)
-          activity[y].endTime = formatDateTime(res.data.result[t].endTime)
-        }
-         //console.log(activity)
-        that.setData({
-          activity: activity,
-          null1:null1
+          activity1 =  res.data.result;
+          for (var t = 0; t < activity1.length; t++) {
+              activity1[t].beginTime = com.formatDate(activity1[t].beginTime);
+              activity1[t].endTime = com.formatDate( activity1[t].endTime);
+          }
+          activity = activity.concat(activity1);
+          that.setData({
+            activity: activity,
+            null1:null1
 
-        })
-        wx.hideLoading()
+          })
+          wx.hideLoading()
       },
       fail: function (e) {
         console.log(e);
@@ -271,18 +244,18 @@ data:{
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
-    var activity = this.data.activity
-    var that = this    
-    activity = []    
-    that.setData({
-      activity: activity
-    })
-    pageNo = 1
-    that.jiaz()
-    console.log('下拉加载第' + pageNo + '页')  
+      wx.showLoading({
+        title: '加载中',
+      })
+      var that = this
+      var activity = that.data.activity
+      activity = []
+      that.setData({
+        activity: activity
+      })
+      pageNo = 1
+      that.jiaz()
+      console.log('下拉加载第' + pageNo + '页')
   },
 
   /**
@@ -290,9 +263,9 @@ data:{
    */
   onReachBottom: function () {
     var that  =this
-  pageNo++
-  that.jiaz()  
-  console.log('上拉加载第' + pageNo+'页')  
+    pageNo++
+    that.jiaz()
+    console.log('上拉加载第' + pageNo+'页')
   },
 
   /**

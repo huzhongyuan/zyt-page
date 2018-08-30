@@ -197,7 +197,52 @@ const noneImg = (that,e) => {
     if (!e.data.result[i].show_url) e.data.result[i].show_url = false;
   }
   return e;
-}
+};
+//时间戳转换时间
+const formatDateTime = (inputTime) => {
+    var datetimes = inputTime.replace(/\-/g, "/")
+    var date = new Date(datetimes);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    var h = date.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;
+    second = second < 10 ? ('0' + second) : second;
+    return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+};
+//时间戳转换时间
+const formatDateTimeNotReplace = (inputTime) => {
+    var date = new Date(inputTime);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    var h = date.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;
+    second = second < 10 ? ('0' + second) : second;
+    return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+};
+
+//时间戳(日期时间)转换成日期
+const formatDate = (inputTime) => {
+    var datetimes = inputTime.replace(/\-/g, "/")
+    var date = new Date(datetimes);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    return y + '-' + m + '-' + d;
+};
 
  module.exports = {
   test: test, //测试
@@ -211,5 +256,8 @@ const noneImg = (that,e) => {
   wanttoplay: wanttoplay,//我想去玩
   playwith: playwith,//约伴去玩
   errorImg: errorImg,//图片异常处理
-   noneImg: noneImg,//图片未传值处理
+  noneImg: noneImg,//图片未传值处理
+  formatDateTime:formatDateTime,//日期时间转换
+  formatDate:formatDate,//日期转换
+  formatDateTimeNotReplace:formatDateTimeNotReplace,//日期转换
 }

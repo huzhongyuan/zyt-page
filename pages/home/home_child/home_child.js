@@ -1,21 +1,7 @@
 // pages/home/home_child/home_child.js
 var app = getApp()
 import com from '../../to_play/util.js'
-function formatDateTime(inputTime) {
-  var date = new Date(inputTime);
-  var y = date.getFullYear();
-  var m = date.getMonth() + 1;
-  m = m < 10 ? ('0' + m) : m;
-  var d = date.getDate();
-  d = d < 10 ? ('0' + d) : d;
-  var h = date.getHours();
-  h = h < 10 ? ('0' + h) : h;
-  var minute = date.getMinutes();
-  var second = date.getSeconds();
-  minute = minute < 10 ? ('0' + minute) : minute;
-  second = second < 10 ? ('0' + second) : second;
-  return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
-};
+
 Page({
 
   /**
@@ -122,8 +108,8 @@ wx.showModal({
     wx.request({
       url: app.globalData.url + '/activity/getActivityDetail/' + classId,
       success: function (res) {
-        let nowtime = formatDateTime(new Date());
-        let endtime = formatDateTime(res.data.result.endTime);
+        let nowtime = com.formatDateTimeNotReplace(new Date());
+        let endtime = com.formatDateTime(res.data.result.endTime);
         let nt = Date.parse(new Date(nowtime)) / 1000;
         let et = Date.parse(new Date(endtime)) / 1000;
         if(nt - et > 0) {
@@ -139,8 +125,8 @@ wx.showModal({
         }
         console.log(res.data.result.endTime);
         activity = res.data.result;
-        activity.beginTime = formatDateTime(res.data.result.beginTime);
-        activity.endTime = formatDateTime(res.data.result.endTime);
+        activity.beginTime = com.formatDateTime(res.data.result.beginTime);
+        activity.endTime = com.formatDateTime(res.data.result.endTime);
         console.log(activity);
         that.setData({
           activity: activity,
@@ -239,7 +225,7 @@ baom:function(){
   },
   // 去报名
   sign:function(e){
-    let nowtime = formatDateTime(new Date());
+    let nowtime = com.formatDateTimeNotReplace(new Date());
     let endtime = this.data.activity.endTime;
     let nt = Date.parse(new Date(nowtime)) / 1000;
     let et = Date.parse(new Date(endtime)) / 1000;

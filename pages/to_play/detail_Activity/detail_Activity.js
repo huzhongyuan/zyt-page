@@ -34,7 +34,7 @@ Page({
 
     //获取项目列表
     wx.request({
-      url: app.globalData.url + '/placeProject/getProjectByPlaceId/6',
+      url: app.globalData.url + '/placeProject/getProjectByPlaceId/'+ (options.id || 6),
       success: function(e) {
         console.log(e.data.result);
         let item_list = [];
@@ -52,10 +52,7 @@ Page({
             })
           }
         }
- 
-        // that.setData({
-        //   [src]: '1.png'
-        // })
+
       }
     })
   },
