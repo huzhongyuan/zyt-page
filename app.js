@@ -38,6 +38,6 @@ App({
     // url: 'http://fk3w42.natappfree.cc/api',
     //url: 'http://www.iyoubang.com:8084/api',
     // url:'http://127.0.0.1:8082/api',
-    url: 'http://www.iyoubang.com:8084/api'
+    url: 'https://www.iyoubang.com/api'
   }
 })
