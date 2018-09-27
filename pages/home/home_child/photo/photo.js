@@ -40,7 +40,6 @@ Page({
         }
       })
     }).then((r) => {
-      var imagesid = this.data.imagesid
       //var img = this.data.img
       // console.log(i)
       wx.chooseImage({
@@ -52,12 +51,13 @@ Page({
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           var tempFilePaths = res.tempFilePaths
           wx.showLoading({
-            title: '上传中',
-            duration: 1000,
+            title: '上传中'
           })
           // 上传至服务器\
-          var asd = ''
-          for (let t = 0; t < res.tempFilePaths.length; t++) {
+          var asd = '';
+            var length = res.tempFilePaths.length;
+          var count = 0;
+          for (let t = 0; t < length; t++) {
             asd = res.tempFilePaths[t];
             console.log(asd);
             wx.uploadFile({
@@ -69,7 +69,8 @@ Page({
               },
               success: function (e) {
                 console.log(e)
-                // console.log(e.data)
+                  var imagesid = that.data.imagesid;
+                  // console.log(e.data)
                 // console.log(e.data.result[0].attachemId)
                 var jsonStr = e.data;
                 jsonStr = jsonStr.replace(" ", "");
@@ -77,7 +78,8 @@ Page({
                 var jj = JSON.parse(jsonStr);
                 e.data = jj;
                 if (e.data.success == true) {
-                  imagesid = imagesid + ',' + e.data.result[0].attachemId;
+                  imagesid = imagesid + ',' + e.data.result[0].attachemId.toString();
+                  console.log('---------------------------');
                   console.log(imagesid);
                   that.setData({
                     imagesid: imagesid,
@@ -87,9 +89,9 @@ Page({
                   // that.setData({
                   //   img: img,
                   // })
-                  setTimeout(function () {
+                  /*setTimeout(function () {
                     that.asdaasda()
-                  }, 1000);
+                  }, 1000);*/
                 } else {
                   wx.hideLoading();
                   console.log(res.data.msg);
@@ -98,13 +100,21 @@ Page({
                     content: e.data.msg,
                     showCancel: false
                   })
-
+                    wx.hideLoading();
                 }
               },
               fail: function (res) {
-                console.log(res);
+                  wx.hideLoading();
+                  console.log(res);
                 console.log(res.data.msg);
-              }
+              },
+                complete: function () {
+                    count++;
+                    if (count==length) {
+                        wx.hideLoading();
+                        that.asdaasda()
+                    }
+                }
             })
           }
 
@@ -124,10 +134,10 @@ Page({
     var imagesid = this.data.imagesid
     var classId = this.data.classId
     var classid = this.data.classid
-    imagesid = imagesid.replace(',', '')
+    imagesid = imagesid.replace(',', '');
     console.log(imagesid);
-    imagesid = parseInt(imagesid);
-    console.log(typeof (imagesid));
+    // imagesid = parseInt(imagesid);
+    // console.log(typeof (imagesid));
     wx.request({
       url: app.globalData.url + '/activityComment/saveActivityCommentImages',
       data: {
