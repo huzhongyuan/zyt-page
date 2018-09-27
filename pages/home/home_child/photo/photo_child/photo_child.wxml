@@ -12,6 +12,7 @@
     <image class='good_img' mode='aspectFit' src='../../../../../images/good.png'></image>
   </view>
 </view>
+<view class='onone' style='display:{{null1 ? "block": "none"}}'>没有更多照片了</view>
 <view class='ssdad'>
 <image class='addimgs' bindtap='addimagssss' src='../../../../../images/add2.png'></image>
 </view>

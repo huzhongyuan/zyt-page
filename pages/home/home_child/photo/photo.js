@@ -1,6 +1,48 @@
 // pages/home/home_child/photo/photo.js
 var app = getApp()
-import com from '../../../../pages/to_play/util.js'
+import com from '../../../../pages/to_play/util.js';
+let pageNo = 1;
+let loadMore = (that) => {
+  wx.showLoading({
+    title: '加载中...',
+  })
+  let imgarray = that.data.imgarray;
+  console.log(imgarray);
+  console.log(that.data.classId);
+  console.log(pageNo);
+  wx.request({
+    url: app.globalData.url + '/activityComment/getImagesByActivityId',
+    data: {
+      activityId: that.data.classId,
+      pageNo: pageNo,
+      pageSize: 5,
+    },
+    success: function (res) {
+      console.log('活动图片')
+      console.log(res)
+      for (let a = 0; a < res.data.result.length; a++) {
+        res.data.result[a].gmt_create = com.formatDateTimeNotReplace(res.data.result[a].gmt_create);
+      }
+      imgarray.push(...res.data.result);
+      console.log(imgarray);
+      that.setData({
+        imgarray: imgarray
+      })
+      if (res.data.result.length != 0) {
+        pageNo++;
+       } else {
+        that.setData({
+          null1: true
+        })
+       }
+       wx.hideLoading();
+    },
+    fail: function (e) {
+      console.log(e);
+      wx.hideLoading();
+    }
+  })
+}
 Page({
 
   /**
@@ -9,6 +51,8 @@ Page({
   data: {
     classId:'',
     imagesid:'',
+    imgarray: [],
+    null1:false
   },
 
   /**
@@ -191,7 +235,7 @@ Page({
       url: app.globalData.url + '/activityComment/getImagesByActivityId',
       data: {
         activityId: options.classId,
-        pageNo: 1,
+        pageNo: pageNo,
         pageSize: 5,
       },
       success: function (res) {
@@ -205,6 +249,7 @@ Page({
         that.setData({
           imgarray: imgarray
         })
+        pageNo ++;
       },
       fail: function (e) {
         console.log(e)
@@ -243,15 +288,18 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
-  },
+  // onPullDownRefresh: function () {
+  //   console.log(1111);
+  // },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    if (this.data.null1 != true) {
+      loadMore(this);
+    }
+
   },
 
   /**

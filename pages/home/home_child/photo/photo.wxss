@@ -74,3 +74,9 @@ margin-left: 11rpx;
 height:150rpx;
 margin: 0 auto;
 }
+.onone{
+  line-height: 140rpx;
+  text-align: center;
+  color:#cccccc;
+  font-size: 30rpx;
+}

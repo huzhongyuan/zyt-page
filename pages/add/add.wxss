@@ -149,6 +149,7 @@ button[class="picker_btn"]::after {
     margin: 0rpx;
 }
 .bc_img{
+  width:750rpx;
     /* width:750rpx;
     display: flex; */
     /* min-height: 260rpx; */
