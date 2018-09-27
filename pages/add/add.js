@@ -352,7 +352,9 @@ Page({
             console.log(res.data.success);
             if (res.data.success == true) {
               console.log(111111111111111111111111111111111);
-              imagesid = res.data.result[0].attachemId
+              that.setData({
+                imagesid: res.data.result[0].attachemId
+              })
               that.createActivity();
             } else {
               wx.hideLoading()
@@ -396,7 +398,7 @@ Page({
         serviceRecord.imgId = that.data.imagesid
         serviceRecord.classId = classid[classkindd]
         wx.request({
-          url: app.globalData.url + '/activity/createActivity/' + app.globalData.loginId + '/' + address.latitude + '/' + address.longitude,
+          url: app.globalData.url + '/activity/createActivity/' + address.latitude + '/' + address.longitude+ '/'+ app.globalData.loginId,
           data: serviceRecord,
           method: "POST",
           success: function (res) {
