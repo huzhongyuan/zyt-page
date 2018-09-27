@@ -156,7 +156,7 @@ button[class="picker_btn"]::after {
     /* height: 260rpx; */
     padding: 0rpx;
     margin: 0rpx;
-    display: inline;
+    /* display: inline; */
 }
 .image {
   display: flex;

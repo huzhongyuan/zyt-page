@@ -2,12 +2,12 @@
 
 <view class='my_child_frame'>
   <view class='my_child_data_child'>姓名</view>
-  <input class='my_child_data_input' placeholder="报名者姓名" bindinput="inputValue">{{inputValue}}</input>
+  <input class='my_child_data_input' placeholder="报名者姓名" bindinput="inputValue" value='{{inputValue}}'>{{inputValue}}</input>
 </view>
 <view class='line'></view>
 <view class='my_child_frame'>
   <view class='my_child_data_child'>电话</view>
-  <input class='my_child_data_input' type='number' Number="11" placeholder="填写联系方式" bindinput="inputphone">{{inputphone}}</input>
+  <input class='my_child_data_input' type='number' Number="11" value='{{inputphone}}' placeholder="填写联系方式" bindinput="inputphone">{{inputphone}}</input>
 </view>
 
 <view class='line'></view>

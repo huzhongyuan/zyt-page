@@ -79,6 +79,7 @@ Page({
               url: app.globalData.url + '/wxAuthUser/index',
               data: { openid: app.globalData.openid },
               success: function (res) {
+                console.log(res);
                 console.log(typeof(res.data.success))
                 if (res.data.success == false){
                   console.log('false');
@@ -136,6 +137,7 @@ Page({
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
+          console.log(res);
           app.globalData.userInfo = res.userInfo
           this.setData({
             userInfo: res.userInfo,

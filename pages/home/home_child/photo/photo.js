@@ -41,7 +41,7 @@ Page({
       })
     }).then((r) => {
       var imagesid = this.data.imagesid
-      var img = this.data.img
+      //var img = this.data.img
       // console.log(i)
       wx.chooseImage({
         count: 9, // 默认9
@@ -57,8 +57,9 @@ Page({
           })
           // 上传至服务器\
           var asd = ''
-          for (var t = 0; t < res.tempFilePaths.length; t++) {
-            asd = res.tempFilePaths[t]
+          for (let t = 0; t < res.tempFilePaths.length; t++) {
+            asd = res.tempFilePaths[t];
+            console.log(asd);
             wx.uploadFile({
               url: app.globalData.url + '/attachment/uploadImages',
               filePath: asd,
@@ -81,11 +82,11 @@ Page({
                   that.setData({
                     imagesid: imagesid,
                   })
-                  img = res.tempFilePaths[0]
-                  // console.log(img[i])
-                  that.setData({
-                    img: img,
-                  })
+                  // img = res.tempFilePaths[0]
+                  // // console.log(img[i])
+                  // that.setData({
+                  //   img: img,
+                  // })
                   setTimeout(function () {
                     that.asdaasda()
                   }, 1000);
@@ -186,7 +187,7 @@ Page({
       success: function (res) {
         console.log('活动图片')
         console.log(res)
-        for (var a = 0; a < res.data.result.length; a++) {
+        for (let a = 0; a < res.data.result.length; a++) {
           res.data.result[a].gmt_create = com.formatDateTimeNotReplace(res.data.result[a].gmt_create)
         }
         imgarray = res.data.result

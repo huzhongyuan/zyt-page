@@ -39,7 +39,6 @@
     <view class="picker">
      {{time}}
     </view>
-
   </picker>
 </view>
   <view class="section">

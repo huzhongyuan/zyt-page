@@ -8,23 +8,55 @@ Page({
   data: {
     activitycont: '',
     inputValue: '',
+    name: '',
     inputphone: '',
     authUser: {},
-    inputadult:'',
-    inputchild:'',
-    classid : '',
+    inputadult: '',
+    inputchild: '',
+    classid: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
     // console.log(options)
     var classid = this.data.classid
     classid = options.classId
-this.setData({
-  classid: classid
-})
+    this.setData({
+      classid: classid
+    })
+    // console.log(userInfo);
+    // that.setData({
+    //   inputValue: app.globalData.userInfo.userName
+    // })
+    
+    //获取用户名和电话
+    wx.request({
+      url: app.globalData.url + '/wxAuthUser/userInfo',
+      data: {
+        loginId: app.globalData.loginId
+      },
+      success: function (res) {
+        console.log(res.data.result.nickname);
+        if (res.data.result.nickname) {
+          console.log(111111111);
+          that.setData({
+            inputValue: res.data.result.nickname
+          })
+        }
+        if (res.data.result.username) {
+          that.setData({
+            inputphone: res.data.result.username
+          })
+        }
+      },
+      fail: function (e) {
+        console.log(e)
+      }
+    })
+
   },
 
   inputValue: function (e) {
@@ -60,8 +92,8 @@ this.setData({
     var inputphone = this.data.inputphone
     var inputValue = this.data.inputValue
     var inputchild = this.data.inputchild
-    var inputadult = this.data.inputadult    
-    var classid = this.data.classid    
+    var inputadult = this.data.inputadult
+    var classid = this.data.classid
     var authUser = this.data.authUser
     console.log(inputValue)
     if (inputValue == '') {
@@ -88,37 +120,37 @@ this.setData({
         icon: 'none',
         duration: 2000
       })
-    }else {
+    } else {
       //报名活动
-          var serviceRecord = {}
-          serviceRecord.activityId = classid
-          serviceRecord.adult = that.data.inputadult
-          serviceRecord.child = that.data.inputchild
-          serviceRecord.enterName = that.data.inputValue
-          serviceRecord.enterPhone = that.data.inputphone
-          serviceRecord.loginId = app.globalData.loginId
-          wx.request({
-            url: app.globalData.url + '/activity/enterActivity',
-            data: serviceRecord,
-            method: "POST",
-            success: function (res) {
-              console.log(res)
-              wx.showModal({
-                title: '提示',
-                content: res.data.msg,
-                showCancel: false,
-                success: function () {
-                  wx.navigateBack({
-                  })
-                }
+      var serviceRecord = {}
+      serviceRecord.activityId = classid
+      serviceRecord.adult = that.data.inputadult
+      serviceRecord.child = that.data.inputchild
+      serviceRecord.enterName = that.data.inputValue
+      serviceRecord.enterPhone = that.data.inputphone
+      serviceRecord.loginId = app.globalData.loginId
+      wx.request({
+        url: app.globalData.url + '/activity/enterActivity',
+        data: serviceRecord,
+        method: "POST",
+        success: function (res) {
+          console.log(res)
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false,
+            success: function () {
+              wx.navigateBack({
               })
-            },
-            fail: function (res) {
-              console.log(res)
             }
           })
-       
-    
+        },
+        fail: function (res) {
+          console.log(res)
+        }
+      })
+
+
     }
   },
   /**

@@ -107,7 +107,11 @@ wx.showModal({
     // 活动详情
     wx.request({
       url: app.globalData.url + '/activity/getActivityDetail/' + classId,
+      // data:{
+      //   id: classId
+      // },
       success: function (res) {
+        console.log(res);
         let nowtime = com.formatDateTimeNotReplace(new Date());
         let endtime = com.formatDateTime(res.data.result.endTime);
         let nt = Date.parse(new Date(nowtime)) / 1000;
