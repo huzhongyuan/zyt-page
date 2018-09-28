@@ -1,7 +1,7 @@
 // pages/home/home_child/photo/photo.js
 var app = getApp()
 import com from '../../../../pages/to_play/util.js';
-let pageNo = 1;
+// let pageNo = 1;
 let loadMore = (that) => {
   wx.showLoading({
     title: '加载中...',
@@ -9,12 +9,11 @@ let loadMore = (that) => {
   let imgarray = that.data.imgarray;
   console.log(imgarray);
   console.log(that.data.classId);
-  console.log(pageNo);
   wx.request({
     url: app.globalData.url + '/activityComment/getImagesByActivityId',
     data: {
       activityId: that.data.classId,
-      pageNo: pageNo,
+      pageNo: that.data.pageNo,
       pageSize: 5,
     },
     success: function (res) {
@@ -29,7 +28,9 @@ let loadMore = (that) => {
         imgarray: imgarray
       })
       if (res.data.result.length != 0) {
-        pageNo++;
+          that.setData({
+              pageNo: that.data.pageNo+1
+          })
        } else {
         that.setData({
           null1: true
@@ -52,7 +53,8 @@ Page({
     classId:'',
     imagesid:'',
     imgarray: [],
-    null1:false
+    null1:false,
+      pageNo:1
   },
 
   /**
@@ -235,7 +237,7 @@ Page({
       url: app.globalData.url + '/activityComment/getImagesByActivityId',
       data: {
         activityId: options.classId,
-        pageNo: pageNo,
+        pageNo: that.data.pageNo,
         pageSize: 5,
       },
       success: function (res) {
@@ -247,9 +249,9 @@ Page({
         imgarray = res.data.result
         console.log(imgarray);
         that.setData({
-          imgarray: imgarray
+          imgarray: imgarray,
+            pageNo:that.data.pageNo+1
         })
-        pageNo ++;
       },
       fail: function (e) {
         console.log(e)
