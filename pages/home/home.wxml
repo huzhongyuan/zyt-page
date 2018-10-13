@@ -50,7 +50,7 @@
 <!-- 具体活动 -->
 <view class='activity_child'>
   <view class='one' bindtap='to_child'  wx:for="{{activity}}"  wx:key="" id = "{{item.id}}">
-    <image class='one_img' mode='aspectFit'src='{{item.coverImg}}' binderror="errImg" data-errorimg="{{index}}"></image>
+    <view class='imgBox'><image class='one_img' mode='aspectFill' src='{{item.coverImg}}' binderror="errImg" data-errorimg="{{index}}"></image></view>
     <view class='messageBox'>
       <view class='one_titele'>{{item.title}}</view>
       <view class='timeBox'>

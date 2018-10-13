@@ -100,12 +100,22 @@ margin-right: 24rpx;
   height: 230rpx;
   overflow: hidden;
   background: #fff;
+  align-items: center;
+}
+
+.imgBox {
+  width:200rpx;
+  overflow: hidden;
+  margin-left: 20rpx;
+  height:150rpx;
 }
 .one_img{
-  width:200rpx;
-height:150rpx;
-margin-left: 20rpx;
-margin-top: 37rpx;
+  max-width:200rpx;
+ max-height: 150rpx;
+  /* height: auto;
+  display: flex;
+  z-index: 999;
+  overflow: auto; */
 }
 .one_titele{
   font-size:32rpx;

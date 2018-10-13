@@ -196,7 +196,10 @@ Page({
         if(res.data.success == true) {
           console.log(res);
           wx.hideLoading()
-          wx.navigateBack({})
+          //wx.navigateBack({})
+          wx.showToast({
+            title: '上传成功',
+          })
         } else {
           console.log(res.data.msg);
           wx.showModal({
